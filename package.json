@@ -1,0 +1,13 @@
+{
+  "name": "undercover-salamander",
+  "version": "1.0.0",
+  "description": "701 project :)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "authors": ["Jeff Blake <jtblake@middlebury.edu>",
+            "Cece Ziegler <cziegler@middlebury.edu>",
+            "Lauren Clarke <lclarke@middlebury.edu>" ],
+  "license": "Apache-2.0"
+}
