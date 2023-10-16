@@ -1,8 +1,13 @@
+import MapViewer from "../components/MapViewer";
+// TODO: fix moving index from html to js
+
 export default function WebMap() {
     return ( 
         // <!DOCTYPE html>
         // <!-- Coding Template by CodingNepal - www.codingnepalweb.com -->
-        <html lang="en">
+        // <html lang="en">
+        <html>
+          <MapViewer/>
           <head>
             <meta charset="UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
