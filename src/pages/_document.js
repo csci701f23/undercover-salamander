@@ -8,7 +8,7 @@ export default function Document() {
     {/* <Head/> */}
     {/* Using the above head subcomponent causes hydration errors, but not having it throws a missing subcomponent error */}
     <head>
-      <meta charset="UTF-8" />
+      <meta charSet="UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
             <title>Weather and Climate Tracking | the Undercover Salamanders</title>
         <link rel="stylesheet" href="style.css"/>
