@@ -14,8 +14,10 @@
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
-  "authors": ["Jeff Blake <jtblake@middlebury.edu>",
-            "Cece Ziegler <cziegler@middlebury.edu>",
-            "Lauren Clarke <lclarke@middlebury.edu>" ],
+  "authors": [
+    "Jeff Blake <jtblake@middlebury.edu>",
+    "Cece Ziegler <cziegler@middlebury.edu>",
+    "Lauren Clarke <lclarke@middlebury.edu>"
+  ],
   "license": "Apache-2.0"
 }
