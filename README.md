@@ -14,3 +14,8 @@ This initial project template contains a few workflows (defined in `.github/work
 In general, your development workflow will be to open one (or more) Issues in any given week, write the code in the coming week, and then open and merge one (or more) PRs that address the corresponding Issue(s) from the previous week. When opening an Issue & Pull Request, please complete the relevant fields in the description (the templates are defined in the `.github` directory).
 
 Your first task is to create/review/merge a Pull Request that addresses Issue #1, which consists of creating a `CODE_OF_CONDUCT.md` file for your project.
+
+To compile and test:
+On install: npm install (to install dependencies)
+To run on a local server: npm run dev
+Go on localhost:3000 to see a running version of the server!
