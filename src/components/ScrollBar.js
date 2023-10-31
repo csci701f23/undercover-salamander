@@ -1,80 +1,60 @@
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
-export default function ScrollBar( { currentYear, setCurrentYear, currentSpeed, setCurrentSpeed, isPlaying, setIsPlaying } ) {
+export default function ScrollBar() {
+  const [currentYear, setCurrentYear] = useState(new Date(1940, 0, 1));
+  const [currentSpeed, setCurrentSpeed] = useState(1.0);
+  const [isPlaying, setIsPlaying] = useState(true);
 
-    // TODO: Change span to an icon/image
-    const decreaseTime = 
-        <span
-            onClick={() => {
-                setCurrentYear(currentYear - 1);
-            }}>
-            ⤆
-        </span>
+  const onYearChange = (newYear) => {
+    setCurrentYear(new Date(newYear, 0, 1));
+  };
 
-    const increaseTime = 
-        <span
-            onClick={() => {
-                setCurrentYear(currentYear + 1);
-            }}>
-            ⤇
-        </span>
+  const onSpeedChange = (newSpeed) => {
+    setCurrentSpeed(parseFloat(newSpeed));
+  };
 
-    const slowDown = 
-        <span
-            onClick={() => {
-                if (isPlaying)
-                    setCurrentSpeed(currentSpeed - 0.25);
-            }}>
-            ⏪
-        </span>
+  const playPause = () => {
+    setIsPlaying(!isPlaying);
+  };
 
-    const fastForward = 
-        <span
-            onClick={() => {
-                if (isPlaying)
-                    setCurrentSpeed(currentSpeed + 0.25);
-            }}>
-            ⏩
-        </span>
+  useEffect(() => {
+    let interval;
 
-    const play = 
-        <span
-            onClick={() => {
-                setIsPlaying(!isPlaying)
-                if (isPlaying) {
-                    const interval = setInterval(() => {
-                        setCurrentYear(currentYear + 1);
-                    }, 1000/currentSpeed)
-                }
-                else {
-                    clearInterval(interval)
-                }
-            }}>
-            {isPlaying ? "⏵" : "⏸"}
-        </span>
+    if (isPlaying) {
+      interval = setInterval(() => {
+        const currentYearObject = new Date(currentYear);
+        currentYearObject.setFullYear(currentYearObject.getFullYear() + 1);
+        setCurrentYear(currentYearObject);
+      }, 1000 / currentSpeed);
+    }
 
-        const interval = setInterval(() => {
-            if (isPlaying)
-                setCurrentYear(currentYear + 1);
-        }, 1000/currentSpeed)
-        // if (!isPlaying){
+    return () => {
+      clearInterval(interval);
+    };
+  }, [isPlaying, currentYear, currentSpeed]);
 
-        //     console.log("cleared")
-        // }
-        // return () => {
-        //     if (!isPlaying)
-        //         clearInterval(interval)
-        // }
-
-    return (
-        <div>
-            {decreaseTime}
-            {slowDown}
-            <span>{currentYear}</span>
-            {play}
-            {fastForward}
-            {increaseTime}
-        </div>
-    )
-
+  return (
+    <div className="scrollbar-container">
+      <div>
+        <label htmlFor="year-slider">Year:</label>
+        <input
+          type="range"
+          min={1940}
+          max={2022}
+          value={currentYear.getFullYear()}
+          onChange={(e) => onYearChange(e.target.value)}
+          id="year-slider"
+        />
+        <output>{`Year: ${currentYear.getFullYear()}`}</output>
+        <output>{`Month: ${currentYear.toLocaleString("default", { month: "long" })}`}</output>
+      </div>
+      <div className="buttons">
+        <span onClick={() => setCurrentYear(currentYear - 1)}>⤆</span>
+        <span onClick={() => setCurrentSpeed(currentSpeed - 0.25)}>⏪</span>
+        <span onClick={playPause}>{isPlaying ? "⏸" : "⏵"}</span>
+        <span onClick={() => setCurrentSpeed(currentSpeed + 0.25)}>⏩</span>
+        <span onClick={() => setCurrentYear(currentYear + 1)}>⤇</span>
+      </div>
+    </div>
+  );
 }

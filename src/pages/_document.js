@@ -28,9 +28,8 @@ export default function Document() {
                 </label>
                 <ul className="all-links">
                   <li><a href="#home">Home</a></li>
-                  <li><a href="#vision">Our Vision</a></li>
-                  <li><a href="#about">About Us</a></li>
-                  <li><a href="#contact">Contact Us</a></li>
+                  <li><a href="#vision">Visualizations</a></li>
+                  <li><a href="#about">Why This Matters</a></li>
                 </ul>
               </nav>
             </header> 
