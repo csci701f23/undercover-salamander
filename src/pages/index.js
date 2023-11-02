@@ -27,8 +27,40 @@ export default function WebMap() {
       <section className="map" id="map">
         <h2>Current Map</h2>
         <p>Here is the current map we have of the rainfall through the USA in 2010.</p>
-        <img src="images/data-map-exploration.png" alt="img" className="climatemap" />
       </section>
+
+      <div className="tab"> 
+        <button className="tablinks" onclick="openMap(event, 'Precipitation')">Precipitation</button>
+        <button className="tablinks" onclick="openMap(event, 'Snowfall')">Snowfall</button>
+        <button className="tablinks" onclick="openMap(event, 'Maximum Temperature')">Maximum Temperature</button>
+        <button className="tablinks" onclick="openMap(event, 'Minimum Temperature')">Minimum Temperature</button>
+      </div>
+
+      <div className="tabcontent" id="Precipitation">
+        <h3>Precipitation</h3>
+        <img src="images/data-map-exploration.png" alt="img" className="climatemap" />
+      </div>
+
+      <div className="tabcontent" id="Snowfall">
+        <h3>Snowfall</h3>
+        <img src="images/data-map-exploration.png" alt="img" className="climatemap" />
+      </div>
+
+      <div className="tabcontent" id="Maximum Temperature">
+        <h3>Maximum Temperature</h3>
+        <img src="images/data-map-exploration.png" alt="img" className="climatemap" />
+      </div>
+
+      <div className="tabcontent" id="Minimum Temperature">
+        <h3>Minimum Temperature</h3>
+        <img src="images/data-map-exploration.png" alt="img" className="climatemap" />
+      </div>
+
+      <button className="tablinks" onclick="openMap(event, 'Precipitation')" id="defaultOpen">Precipitation</button>
+
+      <script>
+      document.getElementById("defaultOpen").click();
+      </script>
 
       <div>
       <ScrollBar
