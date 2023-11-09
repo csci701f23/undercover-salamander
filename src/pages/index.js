@@ -1,5 +1,7 @@
 import MapViewer from "../components/MapViewer.js";
+import Map from "../components/Map.js"
 import Head from "next/head.js";
+import data from "../../data-map-exploration/gz_2010_us_050_00_5m.json"
 // TODO: fix moving index from html to js
 
 export default function WebMap() {
@@ -8,6 +10,9 @@ export default function WebMap() {
     // <!-- Coding Template by CodingNepal - www.codingnepalweb.com -->
     <div>
       <body>
+
+        <Map width={200} height={200} data={data}/>
+
         <section className="homepage" id="home">
           <div className="content">
             <div className="text">
