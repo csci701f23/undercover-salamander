@@ -1,4 +1,4 @@
-# [Project Title]
+# Undercover Salamander
 ## Middlebury College, CSCI 701 (Senior Seminar, Fall 2023)
 
 This is your main project README which will contain instructions on how to build and run your project. You can delete and overwrite the contents of this README file at any point. We'll talk about what should be included in this file later in the semester.
