@@ -10,9 +10,6 @@ export default function WebMap() {
     // <!-- Coding Template by CodingNepal - www.codingnepalweb.com -->
     <div>
       <body>
-
-        <Map width={200} height={200} data={data}/>
-
         <section className="homepage" id="home">
           <div className="content">
             <div className="text">
@@ -23,8 +20,12 @@ export default function WebMap() {
           </div>
         </section>
 
+
+
         <section className="map" id="map">
           <h2>Current Map</h2>
+          {/* TODO: Make width = screen.width without breaking the map */}
+          <Map width={1366} height={500} data={data}/>
           <p>Here is the current map we have of the rainfall through the USA in 2010.</p>
           <img src="images/data-map-exploration.png" alt="img" className="climatemap" />
         </section>

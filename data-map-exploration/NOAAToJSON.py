@@ -42,7 +42,7 @@ def processStation(id, param):
     yearsSeries = filteredData["YEAR"].drop_duplicates().to_json(orient="records")
 
     # Formats station as a geojson feature, all features can be 
-    # contained in one larger FeatureCollectin: https://www.react-graph-gallery.com/choropleth-map
+    # contained in one larger FeatureCollection: https://www.react-graph-gallery.com/choropleth-map
     stationGeoJSONDict = {
         "type": "Feature",
         "geometry": {
@@ -60,6 +60,12 @@ def processStation(id, param):
     return json.dumps(stationGeoJSONDict, indent=4)
 
 def processStates():
+    {
+        # "type": "FeatureCollection"
+        # [
+
+        # ]
+    }
     stateStations = stationInformation.loc[stationInformation["ID"].str.contains("US")]["ID"]
     for (key, value) in stateStations.items():
         json = processStation(value, "PRCP")
