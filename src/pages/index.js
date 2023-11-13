@@ -7,9 +7,14 @@ import Head from "next/head"; // Import the next/head component
 import ScrollBar from "../components/ScrollBar";
 
 export default function WebMap() {
-  const [currentYear, setCurrentYear] = useState(new Date(1940, 0, 1).toLocaleDateString());
-  const [currentSpeed, setCurrentSpeed] = useState(1.0); // Initial speed as a float
+  const initialYear = new Date(1940, 0, 1);
+
+  const [currentYear, setCurrentYear] = useState(initialYear);
+  const [currentSpeed, setCurrentSpeed] = useState(1.0);
   const [isPlaying, setIsPlaying] = useState(true);
+  
+  console.log('Current Year in WebMap:', currentYear);
+  
   return (
     <div>
       <Head>
