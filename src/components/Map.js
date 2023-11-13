@@ -1,7 +1,7 @@
 import * as d3 from 'd3';
 // import { FeatureCollection } from 'geojson';
 
-export default function Map ({ width, height, data }) {
+export default function Map ({ parameter, width, height, data }) {
   // TODO: Add year as a piece of state from MapViewer
   const scale = 1000;
   const projection = d3
