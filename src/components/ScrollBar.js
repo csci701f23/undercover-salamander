@@ -1,59 +1,82 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
-export default function ScrollBar() {
-  const [currentYear, setCurrentYear] = useState(new Date(1940, 0, 1));
-  const [currentSpeed, setCurrentSpeed] = useState(1.0);
-  const [isPlaying, setIsPlaying] = useState(true);
-
-  const onYearChange = (newYear) => {
-    setCurrentYear(new Date(newYear, 0, 1));
-  };
-
-  const onSpeedChange = (newSpeed) => {
-    setCurrentSpeed(parseFloat(newSpeed));
-  };
-
-  const playPause = () => {
-    setIsPlaying(!isPlaying);
-  };
-
+export default function ScrollBar({
+  currentYear,
+  setCurrentYear,
+  currentSpeed,
+  setCurrentSpeed,
+  isPlaying,
+  setIsPlaying
+}) {
   useEffect(() => {
     let interval;
 
     if (isPlaying) {
+      // If playing, set up an interval to increment the year
       interval = setInterval(() => {
-        const currentYearObject = new Date(currentYear);
-        currentYearObject.setFullYear(currentYearObject.getFullYear() + 1);
-        setCurrentYear(currentYearObject);
+        setCurrentYear((prevYear) => {
+          const newYear = new Date(prevYear);
+          newYear.setFullYear(newYear.getFullYear() + 1);
+          return newYear;
+        });
       }, 1000 / currentSpeed);
     }
 
     return () => {
+      // Clear the interval when the component unmounts or when isPlaying becomes false
       clearInterval(interval);
     };
-  }, [isPlaying, currentYear, currentSpeed]);
+  }, [isPlaying, currentSpeed, setCurrentYear]);
+
+  const onYearChange = (newYear) => {
+    // Update the current year when the user interacts with the slider
+    setCurrentYear(new Date(newYear, 0, 1));
+  };
+
+  const onSpeedChange = (newSpeed) => {
+    // Update the current speed when the user interacts with the speed control
+    setCurrentSpeed(parseFloat(newSpeed));
+  };
+
+  const playPause = () => {
+    // Toggle the play/pause state
+    setIsPlaying(!isPlaying);
+  };
+
+  const decrementYear = () => {
+    // Decrease the year by one
+    onYearChange(currentYear.getFullYear() - 1);
+  };
+
+  const incrementYear = () => {
+    // Increase the year by one
+    onYearChange(currentYear.getFullYear() + 1);
+  };
 
   return (
     <div className="scrollbar-container">
-      <div>
-        <label htmlFor="year-slider">Year:</label>
-        <input
-          type="range"
-          min={1940}
-          max={2022}
-          value={currentYear.getFullYear()}
-          onChange={(e) => onYearChange(e.target.value)}
-          id="year-slider"
-        />
-        <output>{`Year: ${currentYear.getFullYear()}`}</output>
-        <output>{`Month: ${currentYear.toLocaleString("default", { month: "long" })}`}</output>
-      </div>
+      <label htmlFor="year-slider">Year:</label>
+      {/* Year slider input */}
+      <input
+        type="range"
+        min={1940}
+        max={2022}
+        value={currentYear.getFullYear()}
+        onChange={(e) => onYearChange(parseInt(e.target.value, 10))}
+        id="year-slider"
+      />
+      {/* Display the current year */}
+      <output>{`Year: ${currentYear.getFullYear()}`}</output>
+      {/* Display the current month */}
+      <output>{`Month: ${currentYear.toLocaleString("default", { month: "long" })}`}</output>
+
+      {/* Control buttons */}
       <div className="buttons">
-        <span onClick={() => setCurrentYear(currentYear - 1)}>⤆</span>
+        <span onClick={decrementYear}>⤆</span>
         <span onClick={() => setCurrentSpeed(currentSpeed - 0.25)}>⏪</span>
         <span onClick={playPause}>{isPlaying ? "⏸" : "⏵"}</span>
         <span onClick={() => setCurrentSpeed(currentSpeed + 0.25)}>⏩</span>
-        <span onClick={() => setCurrentYear(currentYear + 1)}>⤇</span>
+        <span onClick={incrementYear}>⤇</span>
       </div>
     </div>
   );
