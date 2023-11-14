@@ -2,6 +2,7 @@ import { useState } from "react";
 import ScrollBar from "./ScrollBar"
 import Map from "./Map"
 import background from "../../data/us_counties_5m.json"
+import TabBar from "./ScrollBar"
 
 export default function MapViewer() {
     const [currentYear, setCurrentYear] = useState(2000);
