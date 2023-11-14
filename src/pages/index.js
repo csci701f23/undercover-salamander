@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
+import MapViewer from "../components/MapViewer.js";
+import Map from "../components/Map"
+// TODO: fix moving index from html to js
+import React, { useState } from "react";
+import Head from "next/head"; // Import the next/head component
+
 import ScrollBar from "../components/ScrollBar";
 
 export default function WebMap() {
@@ -17,6 +23,13 @@ export default function WebMap() {
         <title>Weather and Climate Tracking</title>
       </Head>
 
+      <section className="map" id="map">
+        <h2>Current Map</h2>
+        <MapViewer/>
+        <p>Here is the current map we have of the rainfall through the USA in 2010.</p>
+        <img src="images/data-map-exploration.png" alt="img" className="climatemap" />
+      </section>
+
       <section className="homepage" id="home">
         <div className="content">
           <div className="text">
@@ -28,11 +41,13 @@ export default function WebMap() {
         </div>
       </section>
 
-      <section className="map" id="map">
+      {/* <section className="map" id="map">
         <h2>Current Map</h2>
         <p>Here is the current map we have of the rainfall through the USA in 2010.</p>
         <img src="images/data-map-exploration.png" alt="img" className="climatemap" />
       </section>
+      </section> */}
+
       <div>
         <ScrollBar
           currentYear={currentYear}
