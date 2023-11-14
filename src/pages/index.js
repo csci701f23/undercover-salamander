@@ -1,5 +1,3 @@
-import React, { useState, useEffect } from "react";
-import Head from "next/head";
 import MapViewer from "../components/MapViewer.js";
 import Map from "../components/Map"
 // TODO: fix moving index from html to js
@@ -45,7 +43,6 @@ export default function WebMap() {
         <h2>Current Map</h2>
         <p>Here is the current map we have of the rainfall through the USA in 2010.</p>
         <img src="images/data-map-exploration.png" alt="img" className="climatemap" />
-      </section>
       </section> */}
 
       <div>
