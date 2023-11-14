@@ -55,7 +55,6 @@ export default function WebMap() {
           setIsPlaying={setIsPlaying}
         />
       </div>
-
       <section className="vision" id="vision">
         <h2>Our Vision</h2>
         <p>Take a look at what we plan to create and add to our website.</p>

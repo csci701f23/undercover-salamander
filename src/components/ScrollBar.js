@@ -61,14 +61,15 @@ export default function ScrollBar({
         type="range"
         min={1940}
         max={2022}
-        value={currentYear.getFullYear()}
+        value={currentYear instanceof Date ? currentYear.getFullYear() : currentYear}
         onChange={(e) => onYearChange(parseInt(e.target.value, 10))}
         id="year-slider"
       />
       {/* Display the current year */}
-      <output>{`Year: ${currentYear.getFullYear()}`}</output>
+      <output>{`Year: ${currentYear instanceof Date ? currentYear.getFullYear() : currentYear}`}</output>
       {/* Display the current month */}
-      <output>{`Month: ${currentYear.toLocaleString("default", { month: "long" })}`}</output>
+      <output>{`Month: ${currentYear instanceof Date ? currentYear.toLocaleString("default", { month: "long" }) : ''}`}</output>
+
 
       {/* Control buttons */}
       <div className="buttons">
