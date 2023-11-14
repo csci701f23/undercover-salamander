@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Head from "next/head"; // Import the next/head component
 
 import ScrollBar from "../components/ScrollBar";
+import openMap from "../components/Tabs";
 
 export default function WebMap() {
   const [currentYear, setCurrentYear] = useState(new Date(1940, 0, 1).toLocaleDateString());
@@ -30,10 +31,10 @@ export default function WebMap() {
       </section>
 
       <div className="tab"> 
-        <button className="tablinks" onclick="openMap(event, 'Precipitation')">Precipitation</button>
-        <button className="tablinks" onclick="openMap(event, 'Snowfall')">Snowfall</button>
-        <button className="tablinks" onclick="openMap(event, 'Maximum Temperature')">Maximum Temperature</button>
-        <button className="tablinks" onclick="openMap(event, 'Minimum Temperature')">Minimum Temperature</button>
+        <button className="tablinks" onClick={(event) => openMap(event, 'Precipitation')}>Precipitation</button>
+        <button className="tablinks" onClick={(event) => openMap(event, 'Snowfall')}>Snowfall</button>
+        <button className="tablinks" onClick={(event) => openMap(event, 'Maximum Temperature')}>Maximum Temperature</button>
+        <button className="tablinks" onClick={(event) => openMap(event, 'Minimum Temperature')}>Minimum Temperature</button>
       </div>
 
       <div className="tabcontent" id="Precipitation">
@@ -55,12 +56,6 @@ export default function WebMap() {
         <h3>Minimum Temperature</h3>
         <img src="images/data-map-exploration.png" alt="img" className="climatemap" />
       </div>
-
-      <button className="tablinks" onclick="openMap(event, 'Precipitation')" id="defaultOpen">Precipitation</button>
-
-      <script>
-      document.getElementById("defaultOpen").click();
-      </script>
 
       <div>
       <ScrollBar

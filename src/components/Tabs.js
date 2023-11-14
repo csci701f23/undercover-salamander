@@ -1,20 +1,22 @@
-function openMap(evt, currMap) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
+import React, { useState } from "react";
+
+export default function openMap(evt, currMap) {
+    //const [currentTab, setCurrentTab] = useState(currMap);
   
     // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-      tabcontent[i].style.display = "none";
-    }
+    const tabcontent = ReactDOM.createRoot(document.getElementsByClassName("tabcontent"));
+    tabcontent.forEach((tab) => {
+      tab.style.display = "none";
+    });
   
     // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
+    const tablinks = ReactDOM.createRoot(document.getElementsByClassName("tablinks"));
+    tablinks.forEach((tablink) => {
+      tablink.className = tablink.className.replace(" active", "");;
+    });
   
     // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(currMap).style.display = "block";
+    tab = document.getElementById(currMap);
+    tab.style.display = "block";
     evt.currentTarget.className += " active";
   }

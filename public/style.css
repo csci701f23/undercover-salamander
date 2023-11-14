@@ -441,7 +441,6 @@ span {
   border: 1px solid #ccc;
   border-top: none;
   text-align: center;
-  display: block; /* when deleted all  */
 }
 
 .tabcontent .climatemap {
