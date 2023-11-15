@@ -25,7 +25,7 @@ class MyDocument extends Document {
               </label>
               <ul className="all-links">
                 <li><a href="#home">Home</a></li>
-                <li><a href="#vision">Visualizations</a></li>
+                <li><a href="#map">Visualizations</a></li>
                 <li><a href="#about">Why This Matters</a></li>
               </ul>
             </nav>
