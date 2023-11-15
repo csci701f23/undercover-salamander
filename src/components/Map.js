@@ -7,6 +7,10 @@ export default function Map ({ parameter, width, height, data }) {
   const projection = d3
     .geoAlbersUsa()
     .scale(scale)
+<<<<<<< HEAD
+=======
+    .translate([width / 2, height / 2]); // Center the map on the SVG
+>>>>>>> 33e87e53c7ef846af3445dd21938f1f13355b23f
 
     // TODO: Fix centering
     // .translate();
