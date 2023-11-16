@@ -7,13 +7,7 @@ export default function Map ({ parameter, width, height, data }) {
   const projection = d3
     .geoAlbersUsa()
     .scale(scale)
-<<<<<<< HEAD
-=======
     .translate([width / 2, height / 2]); // Center the map on the SVG
->>>>>>> 33e87e53c7ef846af3445dd21938f1f13355b23f
-
-    // TODO: Fix centering
-    // .translate();
 
     // TODO: fix runtime using geoPath(project, context) to save as a graphics context
   const geoPathGenerator = d3.geoPath().projection(projection);
@@ -24,6 +18,7 @@ export default function Map ({ parameter, width, height, data }) {
     .map((shape) => {
       return (
         <path
+          // TODO: Key = State id like MA for Mass and county like Plymouth, e.g. MAPlymouth for key. 
           key={shape.properties.GEO_ID}
           d={geoPathGenerator(shape)}
           stroke="lightGrey"
