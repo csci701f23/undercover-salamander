@@ -12,24 +12,6 @@ from geopy.extra.rate_limiter import RateLimiter
 
 placeholderColumns = ["ID", "Name", "County", "Latitude", "Longitude", "YearsArray", "YearsValues"]
 
-# extract all stations that start with US from ghcnd-stations.txt
-# go to https://www1.ncdc.noaa.gov/pub/data/ghcn/daily/all/{stationID}.dly , download and convert to JSON
-
-# add parameters for file names in the future, and parameter to look for
-
-# ------------------------------
-# Variable   Columns   Type
-# ------------------------------
-# ID            1-11   Character
-# LATITUDE     13-20   Real
-# LONGITUDE    22-30   Real
-# ELEVATION    32-37   Real
-# STATE        39-40   Character
-# NAME         42-71   Character
-# GSN FLAG     73-75   Character
-# HCN/CRN FLAG 77-79   Character
-# WMO ID       81-85   Character
-# ------------------------------
 stationColSpecs = [(0, 11), (11, 20), (20, 30),  (30, 37), (37, 40), (40, 71), (71, 75), (75, 79), (79, 85)]
 stationColNames = ["ID", "Latitude", "Longitude", "Elevation", "State", "Name", "GSN Flag",  "HCN/CRN Flag", "WMO ID"]
 stationInformation = pd.read_fwf("https://www1.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-stations.txt", colspecs=stationColSpecs, header=None, names=stationColNames)
@@ -43,6 +25,22 @@ for i in range(21, 264, 8):
     colspecs.append((i, i + 5))
     colnames.append(f"VALUE{count}")
     count += 1
+
+# Takes in a group from a specific county, averages vals
+def averageCounty(countyGroup):
+    dict = {}
+
+    # So much optimization can be done
+    for key, value in countyGroup.iterrows():
+        for i in range(0, len(value["YEARS"])):
+            yearKey = int(value['YEARS'][i])
+                                                                            # bad code
+            dict[yearKey] = [dict.get(yearKey, [0])[0] + 1, dict.get(yearKey, [0, 0])[1] + value["VALS"][i]]
+
+    for key_ in dict:
+        print(type(key_))
+        dict[key_] = dict[key_][1]/dict[key_][0]
+    return json.dumps(dict)
 
 def getCountyAndState(addressElements):
     i = 0
@@ -62,10 +60,13 @@ def processStation(id, name, latitude, longitude, param):
     filteredData = individualData.query(f'YEAR >= 1940 and YEAR < 2023 and ELEMENT == "{param}"').replace(-9999, None).reset_index(drop=True)
 
     # from: https://sparkbyexamples.com/pandas/pandas-sum-dataframe-columns/
+    # TODO: For TMAX or TMIN param, don't average but reduce by the max/min temp of all days in the year
     filteredData["MEAN"] = filteredData.iloc[:, 4:].mean(axis=1)
-    yearlyVal = filteredData.groupby('YEAR')['MEAN'].sum().div(12).to_json(orient="records")
 
-    yearsSeries = filteredData["YEAR"].drop_duplicates().to_json(orient="records")
+    # change to .apply(lambda x, accumulator: max(x)) something like that?? Then you can provide a function as a param and put that in apply
+    yearlyVal = filteredData.groupby('YEAR')['MEAN'].sum().div(12).to_numpy()
+
+    yearsSeries = filteredData["YEAR"].drop_duplicates().to_numpy()
 
     # https://geopy.readthedocs.io/en/stable/
     geolocator = Nominatim(user_agent="Undercover Salamander")
@@ -83,47 +84,13 @@ def processAllStations(param):
     i = 0
     for (key, value) in stateStations.iterrows():
         stateFrame.loc[len(stateFrame.index)] = processStation(value["ID"], value["Name"], value["Latitude"], value["Longitude"], param)
-        i+=1
-        if (i > 3):
+        if i > 3:
             break
-    print(stateFrame)
+        i+=1
     
-    # for each group of counties > send to a function that reduces by average VALS per year > into one row of type "COUNTY" "STATE" "YEARS" "VALS"
-    # stateFrame.groupby("COUNTY")
+    countyData = stateFrame.groupby(["COUNTY", "STATE"]).apply(averageCounty)
     
-
-    # # Formats station as a geojson feature, all features can be 
-    # # contained in one larger FeatureCollection: https://www.react-graph-gallery.com/choropleth-map
-    # stationGeoJSONDict = {
-    #     "type": "Feature",
-    #     "geometry": {
-    #         "type": "Point",
-    #         "coordinates": [latitude, longitude]
-    #     },
-    #     "properties": {
-    #         "ID": id,
-    #         "Name": name,
-    #         "Years": yearsSeries,
-    #         "Param": yearlyVal
-    #     }
-    # }
-
-    # return stationGeoJSONDict
-
-def processStates():
-    dict = {
-        "type": "FeatureCollection",
-        "features":
-        []
-    }
-
-    stateStations = stationInformation.loc[stationInformation["ID"].str.contains("US")]["ID"]
-    for (key, value) in stateStations.items():
-        stationDict = processStation(value, "PRCP")
-        print(stationDict)
-        dict["features"].append(stationDict)
-
-    with open("./data-map-exploration/PRCP_info.json", "w+") as f:
-        json.dump(dict, f, indent=4)
-
+    with open("./data/PRCP_info.json", "w+") as f:
+        countyData.to_json(f, orient="table", indent=4)
+    
 processAllStations("PRCP")
