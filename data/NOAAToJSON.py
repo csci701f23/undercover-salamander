@@ -38,7 +38,6 @@ def averageCounty(countyGroup):
             dict[yearKey] = [dict.get(yearKey, [0])[0] + 1, dict.get(yearKey, [0, 0])[1] + value["VALS"][i]]
 
     for key_ in dict:
-        print(type(key_))
         dict[key_] = dict[key_][1]/dict[key_][0]
     return json.dumps(dict)
 
@@ -81,12 +80,8 @@ def processAllStations(param):
     stateStations = stationInformation.loc[stationInformation["ID"].str.contains("US")]
 
     stateFrame = pd.DataFrame(columns=["ID", "NAME", "COUNTY", "STATE", "LAT", "LONG", "YEARS", "VALS"])
-    i = 0
     for (key, value) in stateStations.iterrows():
         stateFrame.loc[len(stateFrame.index)] = processStation(value["ID"], value["Name"], value["Latitude"], value["Longitude"], param)
-        if i > 3:
-            break
-        i+=1
     
     countyData = stateFrame.groupby(["COUNTY", "STATE"]).apply(averageCounty)
     
