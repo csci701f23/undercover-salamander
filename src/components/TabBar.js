@@ -14,16 +14,16 @@ export default function TabBar({currentTab, setCurrentTab}) {
             </div>
 
             <div className="tabs-content">
-                <div className={currentTab === "PRCP" ? "tabs-content  active-content" : "tabs-content"}>
+                <div className={currentTab === "PRCP" ? "tabs-content  active-content" : "tabs-content  inactive"}>
                     <h3>Precipitation</h3>
                 </div>
-                <div className={currentTab === "SNOW" ? "tabs-content  active-content" : "tabs-content"}>
+                <div className={currentTab === "SNOW" ? "tabs-content  active-content" : "tabs-content  inactive"}>
                     <h3>Snowfall</h3>
                 </div>
-                <div className={currentTab === "MAXT" ? "tabs-content  active-content" : "tabs-content"}>
+                <div className={currentTab === "MAXT" ? "tabs-content  active-content" : "tabs-content  inactive"}>
                     <h3>Maximum Temperature</h3>
                 </div>
-                <div className={currentTab === "MINT" ? "tabs-content  active-content" : "tabs-content"}>
+                <div className={currentTab === "MINT" ? "tabs-content  active-content" : "tabs-content  inactive"}>
                     <h3>Minimum Temperature</h3>
                 </div>
             </div>
