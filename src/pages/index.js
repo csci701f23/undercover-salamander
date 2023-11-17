@@ -27,7 +27,6 @@ export default function WebMap() {
       </section>
 
       <section className="map" id="map">
-        <h2>Current Map</h2>
         <MapViewer/>
       </section>
 
