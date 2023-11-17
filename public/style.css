@@ -415,7 +415,6 @@ span {
 /* Style the tab bar */
 .tabs-buttons {
   overflow: hidden;
-  border: 1px solid #ccc;
   background-color: #f1f1f1;
   text-align: center;
 }
@@ -424,10 +423,10 @@ span {
 .tabs-buttons button {
   background-color: inherit;
   float: none;
-  border: none;
   outline: none;
   cursor: pointer;
   padding: 14px 16px;
+  border: 1px solid #ccc;
   transition: 0.3s;
   display: inline-block
 }
@@ -443,7 +442,7 @@ span {
 }
 
 /* Do not display inactive tab content */
-.tabs-content {
+.tabs-content .inactive {
   display: none;
 }
 
@@ -451,7 +450,6 @@ span {
 .tabs-content .active-content{
   display: block;
   padding: 6px 12px;
-  border: 1px solid #ccc;
   border-top: none;
   text-align: center;
   margin-top: 15px;
