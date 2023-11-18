@@ -10,18 +10,26 @@ export default function ScrollBar({
 }) {
   useEffect(() => {
     let interval;
-
+  
     if (isPlaying) {
       // If playing, set up an interval to increment the year
       interval = setInterval(() => {
         setCurrentYear((prevYear) => {
           const newYear = new Date(prevYear);
           newYear.setFullYear(newYear.getFullYear() + 1);
-          return newYear;
+  
+          // Check if the new year exceeds the maximum (2022)
+          if (newYear.getFullYear() > 2022) {
+            // If exceeded, set it back to the minimum (1940)
+            setCurrentYear(new Date(1940, 0, 1));
+            setIsPlaying(false); // Pause the animation when it reaches 2022
+          } else {
+            return newYear;
+          }
         });
       }, 1000 / currentSpeed);
     }
-
+  
     return () => {
       // Clear the interval when the component unmounts or when isPlaying becomes false
       clearInterval(interval);
@@ -74,9 +82,9 @@ export default function ScrollBar({
       {/* Control buttons */}
       <div className="buttons">
         <span onClick={decrementYear}>⤆</span>
-        <span onClick={() => setCurrentSpeed(currentSpeed - 0.25)}>⏪</span>
+        <span onClick={() => setCurrentSpeed(currentSpeed - 0.5)}>⏪</span>
         <span onClick={playPause}>{isPlaying ? "⏸" : "⏵"}</span>
-        <span onClick={() => setCurrentSpeed(currentSpeed + 0.25)}>⏩</span>
+        <span onClick={() => setCurrentSpeed(currentSpeed + 0.5)}>⏩</span>
         <span onClick={incrementYear}>⤇</span>
       </div>
     </div>
