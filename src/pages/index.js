@@ -1,10 +1,11 @@
 import MapViewer from "../components/MapViewer.js";
-import Map from "../components/Map"
 // TODO: fix moving index from html to js
 import React, { useState } from "react";
 import Head from "next/head"; // Import the next/head component
 
-import ScrollBar from "../components/ScrollBar";
+//TODO: fix issues:
+//  Warning: viewport meta tags should not be used in _document.js's <Head>. https://nextjs.org/docs/messages/no-document-viewport-meta
+//  Warning: <title> should not be used in _document.js's <Head>. https://nextjs.org/docs/messages/no-document-title
 
 export default function WebMap() {
   
@@ -20,7 +21,7 @@ export default function WebMap() {
           <div className="text">
             <h1>Weather and Climate Tracking</h1>
             <p>
-              Our basic website to track and simulate the effects of climate change on weather patterns.
+              Visualizing weather pattern changes from 1940 to 2022.
             </p>
           </div>
         </div>
@@ -31,16 +32,16 @@ export default function WebMap() {
       </section>
 
 
-      <section className="about" id="about">
-        <h2>About Us</h2>
+      <section className="whymatters" id="whymatters">
+        <h2>Why This Matters</h2>
         <p>Discover why we are creating this website.</p>
         <div className="row company-info">
         </div>
       </section>
 
-      <section className="contact" id="contact">
-        <h2>Contact Us</h2>
-        <p>Reach out to us for any inquiries or feedback.</p>
+      <section className="about" id="about">
+        <h2>About Us</h2>
+        <p>This is who we are.</p>
         <div className="row">
         </div>
       </section>

@@ -9,7 +9,6 @@ class MyDocument extends Document {
           <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
           <title>Weather and Climate Tracking | the Undercover Salamanders</title>
           <link rel="stylesheet" href="style.css"/>
-          {/* <!-- Fontawesome Link for Icons --> */}
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/>
         </Head>
         <body>
@@ -26,7 +25,8 @@ class MyDocument extends Document {
               <ul className="all-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#map">Visualizations</a></li>
-                <li><a href="#about">Why This Matters</a></li>
+                <li><a href="#whymatters">Why This Matters</a></li>
+                <li><a href="#about">About Us</a></li>
               </ul>
             </nav>
           </header>
@@ -34,10 +34,10 @@ class MyDocument extends Document {
           <NextScript />
           <footer>
             <div>
-              <span>Copyright © 2023 All Rights Reserved</span>
+              <span></span>
               <span className="link">
                 <a href="#">Home</a>
-                <a href="#contact">Contact</a>
+                <a href="#map">Visuals</a>
               </span>
             </div>
           </footer>

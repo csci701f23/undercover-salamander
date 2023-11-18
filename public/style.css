@@ -116,12 +116,8 @@ header a:hover, footer a:hover {
   text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 }
 
-.map .climatemap {
+.map {
   margin-top: 15px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 65%;
 }
 
 .content a {
@@ -171,6 +167,7 @@ section .cards {
 section.about {
   margin: 0 auto;
   max-width: 1200px;
+  margin-bottom: 30px;
 }
 
 .about .company-info {
@@ -188,6 +185,11 @@ section.about {
 
 .about .team ul {
   padding-left: 20px;
+}
+
+section.whymatters {
+  margin: 0 auto;
+  max-width: 1200px;
 }
 
 section .cards .card {
