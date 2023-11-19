@@ -7,6 +7,7 @@ import geocoder
 from geopy.geocoders import Nominatim
 from geopy.extra.rate_limiter import RateLimiter
 import multiprocessing
+import requests
 # from multiprocessing import Process 
 # import threading
 # import parallelTestModule
@@ -71,20 +72,21 @@ def processStation(id, name, latitude, longitude, param):
     # TODO: For TMAX or TMIN param, don't average but reduce by the max/min temp of all days in the year
     filteredData["MEAN"] = filteredData.iloc[:, 4:].mean(axis=1)
 
-    # change to .apply(lambda x, accumulator: max(x)) something like that?? Then you can provide a function as a param and put that in apply
+    # change to .apply(lambda x, accumulator: max(x)) something like that, Then you can provide a function as a param and put that in apply
     yearlyVal = filteredData.groupby('YEAR')['MEAN'].sum().div(12).to_numpy()
 
     yearsSeries = filteredData["YEAR"].drop_duplicates().to_numpy()
 
-    # reverse = RateLimiter(geolocator.reverse())
-    # try:
-    location = geolocator.reverse(f"{latitude}, {longitude}")
-    # except:
-    #     print("Nom error")
-    #     return None
+    try:
+        # adapted from https://gis.stackexchange.com/questions/372872/max-retries-exceeded-with-url-in-nominatim-with-geopy try using requests instead of geopy
+        location = requests.get(url=f'https://nominatim.openstreetmap.org/reverse?lat={latitude}&lon={longitude}&format=json&accept-language=en').json()
+    except:
+        print("Nom error")
+        return None
+    
+    county = location['address']['county'].replace(" County", "")
+    state = location['address']['state']
 
-    addressElements = location.address.split(", ")
-    [county, state] = getCountyAndState(addressElements)
     if (county == None):
         print("county error")
         return None
