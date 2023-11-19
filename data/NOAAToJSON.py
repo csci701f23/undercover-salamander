@@ -58,11 +58,11 @@ def processStation(id, name, latitude, longitude, param):
         print("Nominatim error")
         return None
     
-    county = location['address']['county'].replace(" County", "")
-    state = location['address']['state']
-
-    if (county == None):
-        print("county error")
+    try:
+        county = location['address']['county'].replace(" County", "")
+        state = location['address']['state']
+    except:
+        print("County/state error")
         return None
 
     return [id, name, county, state, latitude, longitude, yearsSeries, yearlyVal]
