@@ -6,9 +6,10 @@ import geopy
 import geocoder
 from geopy.geocoders import Nominatim
 from geopy.extra.rate_limiter import RateLimiter
-
-# import matplotlib.pyplot as plt
-
+import multiprocessing
+# from multiprocessing import Process 
+# import threading
+# import parallelTestModule
 
 placeholderColumns = ["ID", "Name", "County", "Latitude", "Longitude", "YearsArray", "YearsValues"]
 
@@ -19,6 +20,10 @@ stationInformation = pd.read_fwf("https://www1.ncdc.noaa.gov/pub/data/ghcn/daily
 colspecs = [(0,11), (11,15), (15,17), (17,21)]
 colnames = ["ID", "YEAR", "MONTH", "ELEMENT"]
 count =  1
+
+
+# https://geopy.readthedocs.io/en/stable/
+geolocator = Nominatim(user_agent="Undercover Salamander")
 
 # only adds daily entries, ignores the flags that exist in the dataset
 for i in range(21, 264, 8):
@@ -43,6 +48,10 @@ def averageCounty(countyGroup):
 
 def getCountyAndState(addressElements):
     i = 0
+    county = None
+    state = None
+    # TODO: Breaks on something like "County Road", come up with a more robust way of doing this
+    # TODO: Returned East Tennessee once?
     for i in range (0, len(addressElements)):
         if "County" in addressElements[i]:
             county = addressElements[i].replace(" County", "")
@@ -67,25 +76,78 @@ def processStation(id, name, latitude, longitude, param):
 
     yearsSeries = filteredData["YEAR"].drop_duplicates().to_numpy()
 
-    # https://geopy.readthedocs.io/en/stable/
-    geolocator = Nominatim(user_agent="Undercover Salamander")
+    # reverse = RateLimiter(geolocator.reverse())
+    # try:
     location = geolocator.reverse(f"{latitude}, {longitude}")
+    # except:
+    #     print("Nom error")
+    #     return None
 
     addressElements = location.address.split(", ")
     [county, state] = getCountyAndState(addressElements)
+    if (county == None):
+        print("county error")
+        return None
 
     return [id, name, county, state, latitude, longitude, yearsSeries, yearlyVal]
 
+def processChunk(chunk):
+    result = pd.DataFrame(columns=["ID", "NAME", "COUNTY", "STATE", "LAT", "LONG", "YEARS", "VALS"])
+    param = "PRCP"
+    j = 0
+    for (key, value) in chunk.iterrows():
+        row = processStation(value["ID"], value["Name"], value["Latitude"], value["Longitude"], param)
+        if (row is not None):
+            result.loc[len(result)] = row
+        if j > 10:
+            break
+        j += 1
+    return result
+
 def processAllStations(param):
     stateStations = stationInformation.loc[stationInformation["ID"].str.contains("US")]
+    # adapted parallelization start from: https://stackoverflow.com/questions/40357434/pandas-df-iterrows-parallelization
+    num_processes = multiprocessing.cpu_count()
+    length = stateStations.shape[0]
 
-    stateFrame = pd.DataFrame(columns=["ID", "NAME", "COUNTY", "STATE", "LAT", "LONG", "YEARS", "VALS"])
-    for (key, value) in stateStations.iterrows():
-        stateFrame.loc[len(stateFrame.index)] = processStation(value["ID"], value["Name"], value["Latitude"], value["Longitude"], param)
+    chunk_size = int((length + 1)/num_processes)
+
+    chunks = []
+
+    for i in range(0, length, chunk_size):
+        chunks.append(stateStations.iloc[i:min(i + chunk_size, length)])
     
-    countyData = stateFrame.groupby(["COUNTY", "STATE"]).apply(averageCounty)
+    # TODO: Make sure param is being passed through into processChunk
+    # TODO: Make sure stateFrame is being altered on small sample size
+
+    if __name__ == '__main__':    
+        pool = multiprocessing.Pool(processes=num_processes)
+        
+        results = pool.map(processChunk, chunks)
+        
+        pool.close()
+        pool.join()
+        
+        print(results)
+        print("____________________________________")
+        
+        stateFrame = pd.concat(results).reset_index(drop=True)
+        print(stateFrame)
+        return 
+
     
-    with open("./data/PRCP_info.json", "w+") as f:
-        countyData.to_json(f, orient="table", indent=4)
+
+    # print (stateFrame)
+
+    # return
+    # for (key, value) in stateStations.iterrows():
+    #     row = processStation(value["ID"], value["Name"], value["Latitude"], value["Longitude"], param)
+    #     if (row is not None):
+    #         stateFrame.loc[len(stateFrame)] = row
+    
+    # countyData = stateFrame.groupby(["COUNTY", "STATE"]).apply(averageCounty)
+    
+    # with open("./data/PRCP_info.json", "w+") as f:
+    #     countyData.to_json(f, orient="table", indent=4)
     
 processAllStations("PRCP")
