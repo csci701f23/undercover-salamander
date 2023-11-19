@@ -47,19 +47,6 @@ def averageCounty(countyGroup):
         dict[key_] = dict[key_][1]/dict[key_][0]
     return json.dumps(dict)
 
-def getCountyAndState(addressElements):
-    i = 0
-    county = None
-    state = None
-    # TODO: Breaks on something like "County Road", come up with a more robust way of doing this
-    # TODO: Returned East Tennessee once?
-    for i in range (0, len(addressElements)):
-        if "County" in addressElements[i]:
-            county = addressElements[i].replace(" County", "")
-            state = addressElements[i+1]
-            break
-    return (county, state)
-
 def processStation(id, name, latitude, longitude, param):
     individualData = pd.read_fwf(f"https://www1.ncdc.noaa.gov/pub/data/ghcn/daily/all/{id}.dly", colspecs=colspecs, header=None, names=colnames)
 
@@ -87,6 +74,8 @@ def processStation(id, name, latitude, longitude, param):
     county = location['address']['county'].replace(" County", "")
     state = location['address']['state']
 
+    print(county)
+
     if (county == None):
         print("county error")
         return None
@@ -96,14 +85,10 @@ def processStation(id, name, latitude, longitude, param):
 def processChunk(chunk):
     result = pd.DataFrame(columns=["ID", "NAME", "COUNTY", "STATE", "LAT", "LONG", "YEARS", "VALS"])
     param = "PRCP"
-    j = 0
     for (key, value) in chunk.iterrows():
         row = processStation(value["ID"], value["Name"], value["Latitude"], value["Longitude"], param)
         if (row is not None):
             result.loc[len(result)] = row
-        if j > 10:
-            break
-        j += 1
     return result
 
 def processAllStations(param):
@@ -120,8 +105,6 @@ def processAllStations(param):
         chunks.append(stateStations.iloc[i:min(i + chunk_size, length)])
     
     # TODO: Make sure param is being passed through into processChunk
-    # TODO: Make sure stateFrame is being altered on small sample size
-
     if __name__ == '__main__':    
         pool = multiprocessing.Pool(processes=num_processes)
         
@@ -130,26 +113,16 @@ def processAllStations(param):
         pool.close()
         pool.join()
         
-        print(results)
-        print("____________________________________")
-        
         stateFrame = pd.concat(results).reset_index(drop=True)
-        print(stateFrame)
-        return 
 
-    
-
-    # print (stateFrame)
-
-    # return
-    # for (key, value) in stateStations.iterrows():
-    #     row = processStation(value["ID"], value["Name"], value["Latitude"], value["Longitude"], param)
-    #     if (row is not None):
-    #         stateFrame.loc[len(stateFrame)] = row
-    
-    # countyData = stateFrame.groupby(["COUNTY", "STATE"]).apply(averageCounty)
-    
-    # with open("./data/PRCP_info.json", "w+") as f:
-    #     countyData.to_json(f, orient="table", indent=4)
+        for (key, value) in stateStations.iterrows():
+            row = processStation(value["ID"], value["Name"], value["Latitude"], value["Longitude"], param)
+            if (row is not None):
+                stateFrame.loc[len(stateFrame)] = row
+        
+        countyData = stateFrame.groupby(["COUNTY", "STATE"]).apply(averageCounty)
+        
+        with open("./data/PRCP_info.json", "w+") as f:
+            countyData.to_json(f, orient="table", indent=4)
     
 processAllStations("PRCP")
