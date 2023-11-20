@@ -13,6 +13,8 @@ colspecs = [(0,11), (11,15), (15,17), (17,21)]
 colnames = ["ID", "YEAR", "MONTH", "ELEMENT"]
 count =  1
 
+successfulStations = 0
+
 # only adds daily entries, ignores the flags that exist in the dataset
 for i in range(21, 264, 8):
     colspecs.append((i, i + 5))
@@ -55,16 +57,17 @@ def processStation(id, name, latitude, longitude, param):
         # adapted from https://gis.stackexchange.com/questions/372872/max-retries-exceeded-with-url-in-nominatim-with-geopy try using requests instead of geopy
         location = requests.get(url=f'https://nominatim.openstreetmap.org/reverse?lat={latitude}&lon={longitude}&format=json&accept-language=en').json()
     except:
-        print("Nominatim error")
+        # Nominatim error
         return None
     
     try:
         county = location['address']['county'].replace(" County", "")
         state = location['address']['state']
     except:
-        print("County/state error")
+        # County/state not found
         return None
 
+    successfulStations += 1
     return [id, name, county, state, latitude, longitude, yearsSeries, yearlyVal]
 
 def processStationChunk(chunk):
@@ -92,6 +95,7 @@ def processAllStations(param):
     for i in range(0, length, chunk_size):
         chunks.append(stateStations.iloc[i:min(i + chunk_size, length)])
     
+    print("Processing stations individually...")
     # TODO: Make sure param is being passed through into processChunk programatically
     if __name__ == '__main__':    
         pool = multiprocessing.Pool(processes=num_processes)
@@ -103,6 +107,7 @@ def processAllStations(param):
         
         stationFrame = pd.concat(results).reset_index(drop=True)
         
+        print(f"{successfulStations}/{length} stations processed successfully. Processing counties...")
         # Redefining chunk size here in case some stations weren't processed
         stationFrameLength = stationFrame.shape[0]
         stationFrame_chunk_size = int((stationFrame.shape[0] + num_processes - 1)/num_processes)
