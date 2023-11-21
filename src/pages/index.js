@@ -34,7 +34,7 @@ export default function WebMap() {
 
       <section className="whymatters" id="whymatters">
         <h2>Why This Matters</h2>
-        <p>Discover why we are creating this website.</p>
+        <p>In an era characterized by unprecedented concerns involving climate change, it is imperative to establish a platform where individuals can connect the weather events they experience in their everyday lives to the greater trends resulting from global warming. We hope that our website will provide you with just that. Through our visualizations, we hope you can establish a connection in your own life that will serve as a starting point, inspiring you to make changes or advocate for meaningful climate legislation.  </p>
         <div className="row company-info">
         </div>
       </section>
