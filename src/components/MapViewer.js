@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ScrollBar from "./ScrollBar"
 import Map from "./Map"
-import background from "../../data/us_counties_5m.json"
+import background from "../../data/us_counties_5m_reformatted.json"
 import TabBar from "./TabBar"
 
 export default function MapViewer() {
@@ -14,7 +14,7 @@ export default function MapViewer() {
         <div className="MapViewer">
             <TabBar currentTab={currentTab} setCurrentTab={setCurrentTab}></TabBar>
             {/* TODO: Make width = screen.width without breaking the map */}
-            <Map parameter={currentTab} width={1366} height={500} data={background} />
+            <Map parameter={currentTab} year={2005} width={1366} height={500} geoData={background} />
             <ScrollBar currentYear={currentYear}
             setCurrentYear={setCurrentYear}
             currentSpeed={currentSpeed}
