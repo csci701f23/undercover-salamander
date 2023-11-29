@@ -27,19 +27,19 @@ export default function WebMap() {
         </div>
       </section>
 
-      <section className="map" id="map">
+      <section className="visuals" id="visuals">
         <MapViewer/>
       </section>
 
 
-      <section className="whymatters" id="whymatters">
+      <section className="whythismatters" id="whythismatters">
         <h2>Why This Matters</h2>
         <p>Discover why we are creating this website.</p>
         <div className="row company-info">
         </div>
       </section>
 
-      <section className="about" id="about">
+      <section className="aboutus" id="aboutus">
         <h2>About Us</h2>
         <p>This is who we are.</p>
         <div className="row">
