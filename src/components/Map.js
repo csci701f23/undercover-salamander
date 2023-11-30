@@ -1,8 +1,9 @@
 import * as d3 from 'd3';
 import numData from "../../data/PRCP_info.json"
+import Scale from './Scale';
 // import { FeatureCollection } from 'geojson';
 
-export default function Map ({ parameter, year, width, height, geoData }) {
+export default function Map ({ parameter, year, width, height, geoData, currentTab }) {
   const colorScale = d3.scaleLinear()
     .domain([0, 10, 20, 30])
     .range(["#E5fAC0", "#B4E197", "#83BD75", "#4E944F"]);
@@ -40,11 +41,13 @@ export default function Map ({ parameter, year, width, height, geoData }) {
       );
     });
 
-  return (
-    <div>
-      <svg width={width} height={height}>
-        {allSvgPaths}
-      </svg>
-    </div>
-  );
+    return (
+      <div style={{ display: 'flex' }}>
+        {/* Pass currentTab to Scale component */}
+        <svg width={width} height={height}>
+          {allSvgPaths}
+        </svg>
+        <Scale colorScale={colorScale} height={height} currentTab={currentTab} />
+      </div>
+    );
 };
