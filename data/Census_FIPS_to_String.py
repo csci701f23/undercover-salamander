@@ -14,7 +14,8 @@ newjsonFile = {
 }
 
 for feature in countyData["features"]:
-    if (feature["properties"]["LSAD"] == "County"):
+    # Has to have special cases for Lousiana (uses Parishes instead of counties) and Alaska (uses CAs, city&bor, Boroughs, and one muny)
+    if (feature["properties"]["LSAD"] == "County" or feature["properties"]["LSAD"] == "Parish" or feature["properties"]["STATE"] == "02"):
         newFeature = feature
         state = int(newFeature["properties"]["STATE"])
         state_name = stateData.loc[state]["STATE_NAME"]
@@ -22,4 +23,4 @@ for feature in countyData["features"]:
         newjsonFile["features"].append(newFeature)
 
 with open("./data/us_counties_5m_reformatted.json", "w+") as f:
-    json.dump(newjsonFile, f, indent=2)
+    json.dump(newjsonFile, f, indent=4)

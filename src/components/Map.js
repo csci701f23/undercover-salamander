@@ -32,7 +32,7 @@ export default function Map ({ parameter, year, width, height, geoData }) {
           key={countyId}
           d={geoPathGenerator(shape)}
           stroke="lightGrey"
-          strokeWidth={0.5}
+          strokeWidth={0}
           fill={color}
           fillOpacity={0.7}
           onClick={() => console.log(`${shape.properties.NAME}, ${shape.properties.STATE}`)}
