@@ -3,10 +3,9 @@ import numData from "../../data/PRCP_info.json"
 // import { FeatureCollection } from 'geojson';
 
 export default function Map ({ parameter, year, width, height, geoData }) {
-  
-  const colorScale = d3.scaleThreshold()
-    .domain([100000, 1000000, 10000000, 30000000, 100000000, 500000000])
-    .range(d3.schemeBlues[7]);
+  const colorScale = d3.scaleLinear()
+    .domain([0, 60, 120, 180])
+    .range(["#E5fAC0", "#B4E197", "#83BD75", "#4E944F"]);
 
   const scale = 1000;
   const projection = d3
@@ -22,11 +21,13 @@ export default function Map ({ parameter, year, width, height, geoData }) {
     .map((shape) => {
       const countyId = `${shape.properties.NAME},${shape.properties.STATE}`;
       const regionData = numData.data.find((region) => `${region.COUNTY},${region.STATE}` === countyId);
-      
-      const regionValue = regionData ? regionData.values[`${year}`] : "lightgrey";
+
+      const regionValue = regionData ? regionData.values[`${year}`] : null;
 
       // Extra check for if the given year doesn't exist
-      const color = regionValue ? regionValue : "lightgrey"
+      const color = regionValue ? colorScale(regionValue) : "lightgrey";
+
+      // console.log(`cID: ${countyId}, rData: ${regionData ? regionData.COUNTY : "null"},${regionData ? regionData.STATE : "null"}, color: ${color}`);
 
       return (
         <path
@@ -37,7 +38,7 @@ export default function Map ({ parameter, year, width, height, geoData }) {
           strokeWidth={0.5}
           fill={color}
           fillOpacity={0.7}
-          onClick={() => console.log(shape.properties.county)}
+          onClick={() => console.log(`${shape.properties.NAME}, ${regionValue}, ${color}, ${regionData.values}`)}
         />
       );
     });
