@@ -75,8 +75,6 @@ export default function ScrollBar({
       />
       {/* Display the current year */}
       <output>{`Year: ${currentYear instanceof Date ? currentYear.getFullYear() : currentYear}`}</output>
-      {/* Display the current month */}
-      <output>{`Month: ${currentYear instanceof Date ? currentYear.toLocaleString("default", { month: "long" }) : ''}`}</output>
 
 
       {/* Control buttons */}
