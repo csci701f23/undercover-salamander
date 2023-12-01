@@ -116,7 +116,7 @@ header a:hover, footer a:hover {
   text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 }
 
-.map {
+.visuals {
   margin-top: 15px;
 }
 
@@ -164,30 +164,30 @@ section .cards {
   justify-content: space-between;
 }
 
-section.about {
+section.aboutus {
   margin: 0 auto;
   max-width: 1200px;
   margin-bottom: 30px;
 }
 
-.about .company-info {
+.aboutus .company-info {
   margin-top: 30px;
 }
 
-.about h3 {
+.aboutus h3 {
   margin: 30px 0 10px;
 }
 
-.about .team {
+.aboutus .team {
   text-align: left;
   width: 100%;
 }
 
-.about .team ul {
+.aboutus .team ul {
   padding-left: 20px;
 }
 
-section.whymatters {
+section.whythismatters {
   margin: 0 auto;
   max-width: 1200px;
 }
@@ -220,7 +220,7 @@ section .cards .card {
   margin-top: 5px;
 }
 
-.about .row {
+.aboutus .row {
   padding: 0 10px;
 }
 
