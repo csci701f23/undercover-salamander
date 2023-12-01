@@ -1,6 +1,7 @@
 import * as d3 from 'd3';
 import numData from "../../data/PRCP_info.json"
 import Scale from './Scale';
+import { useState } from "react";
 // import { FeatureCollection } from 'geojson';
 
 export default function Map ({ parameter, year, width, height, geoData, currentTab }) {
@@ -31,6 +32,8 @@ export default function Map ({ parameter, year, width, height, geoData, currentT
       // Extra check for if the given year doesn't exist
       const color = regionValue ? colorScale(regionValue) : "lightgrey";
 
+      const tooltipText = `${shape.properties.NAME}, ${shape.properties.STATE}, ${regionValue}`;
+
       return (
         <path
           key={countyId}
@@ -40,7 +43,9 @@ export default function Map ({ parameter, year, width, height, geoData, currentT
           fill={color}
           fillOpacity={0.7}
           onClick={() => console.log(`${shape.properties.NAME}, ${shape.properties.STATE},  ${regionValue}`)}
-        />
+          >
+            <title>{tooltipText}</title>
+          </path>
       );
     });
 
