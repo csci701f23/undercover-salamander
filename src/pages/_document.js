@@ -14,7 +14,7 @@ class MyDocument extends Document {
         <body>
           <header>
             <nav className="navbar">
-              <h2 className="logo"><a href="#">LOGO</a></h2>
+              <h2 className="logo"><a href="#home"><img src="/images/logo.png" alt="logo"></img></a></h2>
               <input type="checkbox" id="menu-toggler"/>
               <label htmlFor="menu-toggler" id="hamburger-btn">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="24px" height="24px">
@@ -24,9 +24,9 @@ class MyDocument extends Document {
               </label>
               <ul className="all-links">
                 <li><a href="#home">Home</a></li>
-                <li><a href="#map">Visualizations</a></li>
-                <li><a href="#whymatters">Why This Matters</a></li>
-                <li><a href="#about">About Us</a></li>
+                <li><a href="#visuals">Visualizations</a></li>
+                <li><a href="#whythismatters">Why This Matters</a></li>
+                <li><a href="#aboutus">About Us</a></li>
               </ul>
             </nav>
           </header>
@@ -36,8 +36,8 @@ class MyDocument extends Document {
             <div>
               <span></span>
               <span className="link">
-                <a href="#">Home</a>
-                <a href="#map">Visuals</a>
+                <a href="#home">Home</a>
+                <a href="#visuals">Visuals</a>
               </span>
             </div>
           </footer>
