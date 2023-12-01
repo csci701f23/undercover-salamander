@@ -28,11 +28,12 @@ export default function Map ({ parameter, year, width, height, geoData, currentT
       const regionData = numData.data.find((region) => `${region.COUNTY},${region.STATE}` === countyId);
 
       const regionValue = regionData ? JSON.parse(regionData.values)[yearConst] : null;
+      const formattedRegionValue = regionValue != null ? regionValue.toFixed(3) : null;
 
       // Extra check for if the given year doesn't exist
-      const color = regionValue ? colorScale(regionValue) : "lightgrey";
+      const color = formattedRegionValue ? colorScale(formattedRegionValue) : "lightgrey";
 
-      const tooltipText = `${shape.properties.NAME}, ${shape.properties.STATE}, ${regionValue}`;
+      const tooltipText = `${shape.properties.NAME}, ${shape.properties.STATE}, ${formattedRegionValue}mm`;
 
       return (
         <path
