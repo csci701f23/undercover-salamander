@@ -1,8 +1,16 @@
 import * as d3 from 'd3';
+import numData from "../../data/PRCP_info.json"
+import Scale from './Scale';
 // import { FeatureCollection } from 'geojson';
 
-export default function Map ({ parameter, width, height, data }) {
-  // TODO: Add year as a piece of state from MapViewer
+export default function Map ({ parameter, year, width, height, geoData, currentTab }) {
+  // TODO: Extend the scale a bit so values like Alaska aren't just black (100+ precip)
+  const colorScale = d3.scaleLinear()
+    .domain([0, 10, 20, 30])
+    .range(["#E5fAC0", "#B4E197", "#83BD75", "#4E944F"]);
+  
+  const yearConst = `${year}`.split(" ")[3];
+
   const scale = 1000;
   const projection = d3
     .geoAlbersUsa()
@@ -12,29 +20,37 @@ export default function Map ({ parameter, width, height, data }) {
     // TODO: fix runtime using geoPath(project, context) to save as a graphics context
   const geoPathGenerator = d3.geoPath().projection(projection);
 
-  //{path}.pointRadius will be good for displaying station data
-
-  const allSvgPaths = data.features
+  // Code adapted from tutorial: https://www.react-graph-gallery.com/choropleth-map
+  const allSvgPaths = geoData.features
     .map((shape) => {
+      const countyId = `${shape.properties.NAME},${shape.properties.STATE}`;
+      const regionData = numData.data.find((region) => `${region.COUNTY},${region.STATE}` === countyId);
+
+      const regionValue = regionData ? JSON.parse(regionData.values)[yearConst] : null;
+
+      // Extra check for if the given year doesn't exist
+      const color = regionValue ? colorScale(regionValue) : "lightgrey";
+
       return (
         <path
-          // TODO: Key = State id like MA for Mass and county like Plymouth, e.g. MAPlymouth for key. 
-          key={shape.properties.GEO_ID}
+          key={countyId}
           d={geoPathGenerator(shape)}
           stroke="lightGrey"
-          strokeWidth={0.5}
-          fill="grey"
+          strokeWidth={0}
+          fill={color}
           fillOpacity={0.7}
-          onClick={() => console.log(shape.properties.county)}
+          onClick={() => console.log(`${shape.properties.NAME}, ${shape.properties.STATE},  ${regionValue}`)}
         />
       );
     });
 
-  return (
-    <div>
-      <svg width={width} height={height}>
-        {allSvgPaths}
-      </svg>
-    </div>
-  );
+    return (
+      <div style={{ display: 'flex' }}>
+        {/* Pass currentTab to Scale component */}
+        <svg width={width} height={height}>
+          {allSvgPaths}
+        </svg>
+        <Scale colorScale={colorScale} height={height} currentTab={currentTab} />
+      </div>
+    );
 };
