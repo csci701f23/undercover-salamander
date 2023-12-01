@@ -6,7 +6,7 @@ import Scale from './Scale';
 export default function Map ({ parameter, year, width, height, geoData, currentTab }) {
   // TODO: Extend the scale a bit so values like Alaska aren't just black (100+ precip)
   const colorScale = d3.scaleLinear()
-    .domain([0, 10, 20, 30])
+    .domain([0, 1, 2, 3])
     .range(["#E5fAC0", "#B4E197", "#83BD75", "#4E944F"]);
   
   const yearConst = `${year}`.split(" ")[3];
@@ -26,7 +26,7 @@ export default function Map ({ parameter, year, width, height, geoData, currentT
       const countyId = `${shape.properties.NAME},${shape.properties.STATE}`;
       const regionData = numData.data.find((region) => `${region.COUNTY},${region.STATE}` === countyId);
 
-      const regionValue = regionData ? JSON.parse(regionData.values)[yearConst] : null;
+      const regionValue = regionData ? JSON.parse(regionData.values)[yearConst]/10 : null;
 
       // Extra check for if the given year doesn't exist
       const color = regionValue ? colorScale(regionValue) : "lightgrey";
