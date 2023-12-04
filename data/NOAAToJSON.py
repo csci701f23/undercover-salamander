@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import json
 import requests
 import multiprocessing
@@ -13,13 +14,64 @@ colspecs = [(0,11), (11,15), (15,17), (17,21)]
 colnames = ["ID", "YEAR", "MONTH", "ELEMENT"]
 count =  1
 
-successfulStations = 0
+param = ""    
 
 # only adds daily entries, ignores the flags that exist in the dataset
 for i in range(21, 264, 8):
     colspecs.append((i, i + 5))
     colnames.append(f"VALUE{count}")
     count += 1
+
+def setParam(p):
+    global param
+    param = p
+
+# TODO: Make sure this returns floats
+def reduceByParam(group):
+    if param == "TMAX":
+        return group.max()
+    elif param == "TMIN":
+        return group.min()
+    elif param == "PRCP" or param == "SNOW":
+        return group.mean()
+
+def filterAndReduce(group):
+    if (group.shape[0] < 12):
+        return
+    return reduceByParam(group)
+
+def processStation(id, name, latitude, longitude):
+    individualData = pd.read_fwf(f"https://www1.ncdc.noaa.gov/pub/data/ghcn/daily/all/{id}.dly", colspecs=colspecs, header=None, names=colnames)
+
+    if (not (individualData["ELEMENT"].eq(param)).any()):
+        return None
+
+    filteredData = individualData.query(f'YEAR >= 1940 and YEAR < 2023 and ELEMENT == "{param}"').replace(-9999, None).reset_index(drop=True)
+
+    # from: https://sparkbyexamples.com/pandas/pandas-sum-dataframe-columns/
+
+    filteredData["AGG"] = filteredData.iloc[:, 4:].apply(func=reduceByParam, axis=1)
+
+    yearFilter = filteredData.groupby('YEAR')["AGG"].apply(filterAndReduce).dropna()
+    yearlyVal = yearFilter.to_numpy()
+
+    yearsSeries = yearFilter.keys().to_numpy()
+
+    try:
+        # adapted from https://gis.stackexchange.com/questions/372872/max-retries-exceeded-with-url-in-nominatim-with-geopy try using requests instead of geopy
+        location = requests.get(url=f'https://nominatim.openstreetmap.org/reverse?lat={latitude}&lon={longitude}&format=json&accept-language=en').json()
+    except:
+        # Nominatim error
+        return None
+    
+    try:
+        county = location['address']['county'].replace(" County", "")
+        state = location['address']['state']
+    except:
+        # County/state not found
+        return None
+
+    return [id, name, county, state, latitude, longitude, yearsSeries, yearlyVal]
 
 # Takes in a group from a specific county, averages vals
 def averageCounty(countyGroup):
@@ -36,53 +88,23 @@ def averageCounty(countyGroup):
         dict[key_] = dict[key_][1]/dict[key_][0]
     return json.dumps(dict)
 
-def processStation(id, name, latitude, longitude, param):
-    individualData = pd.read_fwf(f"https://www1.ncdc.noaa.gov/pub/data/ghcn/daily/all/{id}.dly", colspecs=colspecs, header=None, names=colnames)
-
-    if (not (individualData["ELEMENT"].eq(param)).any()):
-        return None
-
-    filteredData = individualData.query(f'YEAR >= 1940 and YEAR < 2023 and ELEMENT == "{param}"').replace(-9999, None).reset_index(drop=True)
-
-    # from: https://sparkbyexamples.com/pandas/pandas-sum-dataframe-columns/
-    # TODO: For TMAX or TMIN param, don't average but reduce by the max/min temp of all days in the year
-    filteredData["MEAN"] = filteredData.iloc[:, 4:].mean(axis=1)
-
-    # change to .apply(lambda x, accumulator: max(x)) something like that, Then you can provide a function as a param and put that in apply
-    yearlyVal = filteredData.groupby('YEAR')['MEAN'].sum().div(12).to_numpy()
-
-    yearsSeries = filteredData["YEAR"].drop_duplicates().to_numpy()
-
-    try:
-        # adapted from https://gis.stackexchange.com/questions/372872/max-retries-exceeded-with-url-in-nominatim-with-geopy try using requests instead of geopy
-        location = requests.get(url=f'https://nominatim.openstreetmap.org/reverse?lat={latitude}&lon={longitude}&format=json&accept-language=en').json()
-    except:
-        # Nominatim error
-        return None
-    
-    try:
-        county = location['address']['county'].replace(" County", "")
-        state = location['address']['state']
-    except:
-        # County/state not found
-        return None
-
-    successfulStations += 1
-    return [id, name, county, state, latitude, longitude, yearsSeries, yearlyVal]
-
 def processStationChunk(chunk):
     result = pd.DataFrame(columns=["ID", "NAME", "COUNTY", "STATE", "LAT", "LONG", "YEARS", "VALS"])
-    param = "PRCP"
+    i = 0
     for (key, value) in chunk.iterrows():
-        row = processStation(value["ID"], value["Name"], value["Latitude"], value["Longitude"], param)
+        row = processStation(value["ID"], value["Name"], value["Latitude"], value["Longitude"])
         if (row is not None):
             result.loc[len(result)] = row
+        if (i > 3):
+            break
+        i+=1
     return result
 
 def processCountyChunk(chunk):
     return chunk.groupby(["COUNTY", "STATE"]).apply(averageCounty)
 
 def processAllStations(param):
+    setParam(param)
     stateStations = stationInformation.loc[stationInformation["ID"].str.contains("US")]
     # adapted parallelization start from: https://stackoverflow.com/questions/40357434/pandas-df-iterrows-parallelization
     num_processes = multiprocessing.cpu_count()
@@ -94,10 +116,9 @@ def processAllStations(param):
 
     for i in range(0, length, chunk_size):
         chunks.append(stateStations.iloc[i:min(i + chunk_size, length)])
-    
-    print("Processing stations individually...")
-    # TODO: Make sure param is being passed through into processChunk programatically
+
     if __name__ == '__main__':    
+        print("Processing stations individually...")
         pool = multiprocessing.Pool(processes=num_processes)
         
         results = pool.map(processStationChunk, chunks)
@@ -107,7 +128,7 @@ def processAllStations(param):
         
         stationFrame = pd.concat(results).reset_index(drop=True)
         
-        print(f"{successfulStations}/{length} stations processed successfully. Processing counties...")
+        print("Processing counties...")
         # Redefining chunk size here in case some stations weren't processed
         stationFrameLength = stationFrame.shape[0]
         stationFrame_chunk_size = int((stationFrame.shape[0] + num_processes - 1)/num_processes)
@@ -125,7 +146,7 @@ def processAllStations(param):
 
         countyData = pd.concat(county_results)
         
-        with open("./data/PRCP_info.json", "w+") as f:
+        with open(f"./data/{param}_info_.json", "w+") as f:
             countyData.to_json(f, orient="table", indent=4)
     
-processAllStations("PRCP")
+processAllStations("TMAX")
