@@ -26,14 +26,37 @@ def setParam(p):
     global param
     param = p
 
-# TODO: Make sure this returns floats
+# Framewise functions rather than column OR row, more important for accurate averages
+def frameMax(group):
+    max = float('-inf')
+    for key, value in group.iterrows():
+        if (value.max() > max):
+            max = value.max()
+    return max
+
+def frameMin(group):
+    min = float('inf')
+    for key, value in group.iterrows():
+        if (value.min() < min):
+            min = value.min()
+    return min
+
+def frameMean(group):
+    sum = 0
+    count = 0
+    for key, value in group.iterrows():
+        sum += group.sum(axis=1).sum()
+        count += group.count(axis=1).sum()
+    return sum/count
+
 def reduceByParam(group):
+    valCols = group.iloc[:, 4:]
     if param == "TMAX":
-        return group.max()
+        return frameMax(valCols)
     elif param == "TMIN":
-        return group.min()
+        return frameMin(valCols)
     elif param == "PRCP" or param == "SNOW":
-        return group.mean()
+        return frameMean(valCols)
 
 def filterAndReduce(group):
     if (group.shape[0] < 12):
@@ -50,9 +73,11 @@ def processStation(id, name, latitude, longitude):
 
     # from: https://sparkbyexamples.com/pandas/pandas-sum-dataframe-columns/
 
-    filteredData["AGG"] = filteredData.iloc[:, 4:].apply(func=reduceByParam, axis=1)
+    # filteredData["AGG"] = filteredData.iloc[:, 4:].apply(func=reduceByParam, axis=1)
 
-    yearFilter = filteredData.groupby('YEAR')["AGG"].apply(filterAndReduce).dropna()
+    # yearFilter = filteredData.groupby('YEAR')["AGG"].apply(filterAndReduce).dropna()
+    yearFilter = filteredData.groupby('YEAR').apply(filterAndReduce).dropna()
+    
     yearlyVal = yearFilter.to_numpy()
 
     yearsSeries = yearFilter.keys().to_numpy()
@@ -149,4 +174,4 @@ def processAllStations(param):
         with open(f"./data/{param}_info_.json", "w+") as f:
             countyData.to_json(f, orient="table", indent=4)
     
-processAllStations("TMAX")
+processAllStations("PRCP")
