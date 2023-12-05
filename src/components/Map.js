@@ -6,9 +6,32 @@ import { useState } from "react";
 
 export default function Map ({ parameter, year, width, height, geoData, currentTab }) {
   // TODO: Extend the scale a bit so values like Alaska aren't just black (100+ precip)
-  const colorScale = d3.scaleLinear()
-    .domain([0, 10, 20, 30, 50])
-    .range(["#E5fAC0", "#B4E197", "#83BD75", "#4E944F", "#2A6D2B"]);
+  const getColorScale = (tab) => {
+    switch (tab) {
+      case 'PRCP':
+        return d3.scaleLinear()
+          .domain([0, 10, 20, 30, 50])
+          .range(["#E5fAC0", "#B4E197", "#83BD75", "#4E944F", "#2A6D2B"]);
+      case 'SNOW':
+        return d3.scaleLinear()
+          .domain([0, 10, 20, 30, 50])
+          .range(["#F0E3FF", "#D5B7F7", "#916DD5", "#7346BB", "#592BA2"]);
+      case 'MAXT':
+        return d3.scaleLinear()
+          .domain([0, 10, 20, 30, 50])
+          .range(["#FFFFAD", "#FFCB58", "#F68F50", "#E0603F", "#BE3613"]);
+      case 'MINT':
+        return d3.scaleLinear()
+          .domain([0, 10, 20, 30, 50])
+          .range(["#C2FCF8", "#88D8DA", "#41ADC5", "#1692B6", "#055D96"]);
+      default:
+        return d3.scaleLinear()
+          .domain([0, 10, 20, 30, 50])
+          .range(["#E5fAC0", "#B4E197", "#83BD75", "#4E944F", "#2A6D2B"]);
+    }
+  };
+
+  const colorScale = getColorScale(currentTab);
   
   const yearConst = `${year}`.split(" ")[3];
 
