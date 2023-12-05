@@ -7,8 +7,8 @@ import { useState } from "react";
 export default function Map ({ parameter, year, width, height, geoData, currentTab }) {
   // TODO: Extend the scale a bit so values like Alaska aren't just black (100+ precip)
   const colorScale = d3.scaleLinear()
-    .domain([0, 1, 2, 3])
-    .range(["#E5fAC0", "#B4E197", "#83BD75", "#4E944F"]);
+    .domain([0, 10, 20, 30, 50])
+    .range(["#E5fAC0", "#B4E197", "#83BD75", "#4E944F", "#2A6D2B"]);
   
   const yearConst = `${year}`.split(" ")[3];
 
