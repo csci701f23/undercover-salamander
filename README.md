@@ -1,5 +1,8 @@
 # Undercover Salamander
-## Middlebury College, CSCI 701 (Senior Seminar, Fall 2023)
+## United States Climate Trends Mapped Throughout Time
+
+### Abstract
+Visualizing how weather patterns have changed over time can be an essential tool for understanding climate change and encouraging modifications to daily life. Our project leverages  data from NOAA’s weather station database to analyze changes in minimum and maximum temperature, precipitation, and snowfall in the United States since 1940. Through visualizations, we illustrate the evolving weather patterns, highlighting the urgency of the impacts of climate change. For instance, comparing 1942 to 2020, Charleston, South Carolina experienced a notable increase in average daily rainfall from 27.245mm to 47.429mm. Similar trends can be seen in temperature and snowfall which reinforce our understanding of the correlation between weather and climate change. Our project aims to bridge the gap between data-driven insights and public awareness, fostering an environment where people are working together to address issues posed by climate change.
 
 This is your main project README which will contain instructions on how to build and run your project. You can delete and overwrite the contents of this README file at any point. We'll talk about what should be included in this file later in the semester.
 
