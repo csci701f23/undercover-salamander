@@ -2,24 +2,30 @@
   "name": "undercover-salamander",
   "version": "1.0.0",
   "description": "701 project :)",
+  "homepage": "https://csci701f23.github.io/undercover-salamander/",
   "main": "index.js",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "build": "next build && next export",
     "start": "next start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "d3": "7.8.5",
+    "jest": "29.7.0",
     "next": "13.5",
     "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "d3": "7.8.5",
-    "jest": "29.7.0"
+    "react-dom": "18.2.0"
   },
   "authors": [
     "Jeff Blake <jtblake@middlebury.edu>",
     "Cece Ziegler <cziegler@middlebury.edu>",
     "Lauren Clarke <lclarke@middlebury.edu>"
   ],
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "gh-pages": "^6.1.0"
+  }
 }
