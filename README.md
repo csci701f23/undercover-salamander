@@ -7,7 +7,12 @@ Visualizing how weather patterns have changed over time can be an essential tool
 ### How to Build, Run, and Deploy
 
 
-## Examples and How to Use
+### Examples and How to Use
+
+Our project is hosted on a website that is accessible on any device. Once users open up the website, they can navigate by scrolling down, or clicking on the different tabs at the top of the page labeled “Home”, “Visualizations”, “Why This Matters”, and  “About Us”. In the visualizations section, users can choose a weather element from the tabs above the map and view a simulation from 1940-2022. Controls at the bottom of the map allow the user to speed up, slow down, pause or jump to a specific year on the map using the scroll bar. A color key is provided for interpretation. Hovering over a county reveals details like the county name, state, and the weather element’s value for the selected year. As the user switches between elements the maps will change to show the data associated with the given section.
+
+Below the visualization section, users can explore the importance of our project. Clicking on the links provides additional information on climate change and actionable steps.  
+
 
 This is your main project README which will contain instructions on how to build and run your project. You can delete and overwrite the contents of this README file at any point. We'll talk about what should be included in this file later in the semester.
 
