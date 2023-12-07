@@ -56,7 +56,8 @@ export default function Map ({ parameter, year, width, height, geoData, currentT
       // Extra check for if the given year doesn't exist
       const color = formattedRegionValue ? colorScale(formattedRegionValue) : "lightgrey";
 
-      const tooltipText = `${shape.properties.NAME}, ${shape.properties.STATE}, ${formattedRegionValue}mm`;
+      const numVal = formattedRegionValue ? `${formattedRegionValue}mm` : `${formattedRegionValue}`;
+      const tooltipText = `${shape.properties.NAME}, ${shape.properties.STATE}, ${numVal}`;
 
       return (
         <path
