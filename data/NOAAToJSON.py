@@ -130,7 +130,7 @@ def processStationQueue(TASK_NUMBER, workQueue, stationQueue, mutex):
                 result = pd.DataFrame(columns=["ID", "NAME", "COUNTY", "STATE", "LAT", "LONG", "YEARS", "VALS"])
                 result.loc[len(result)] = row
                 stationQueue.put(result)
-            print(f"{TASK_NUMBER}: {row[0]}")
+            print(f"{TASK_NUMBER}: {value['ID']}")
             sys.stdout.flush()
     print(f"{TASK_NUMBER}: done!")
 
@@ -145,6 +145,7 @@ def processAllStations(param):
     num_processes = multiprocessing.cpu_count()
 
     if __name__ == '__main__':    
+        print(f"Creating data for parameter: {param}:\n")
         print("Processing stations individually...")
         workQueue = multiprocessing.Queue()
         stationQueue = multiprocessing.Queue()
