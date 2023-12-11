@@ -5,6 +5,11 @@ import requests
 import multiprocessing
 import sys
 
+# broken pipe handling
+# from https://www.geeksforgeeks.org/broken-pipe-error-in-python/:
+from signal import signal, SIGPIPE, SIG_DFL   
+signal(SIGPIPE,SIG_DFL) 
+
 placeholderColumns = ["ID", "Name", "County", "Latitude", "Longitude", "YearsArray", "YearsValues"]
 
 stationColSpecs = [(0, 11), (11, 20), (20, 30),  (30, 37), (37, 40), (40, 71), (71, 75), (75, 79), (79, 85)]
@@ -186,10 +191,11 @@ def processAllStations(param):
             process.join()
         print("postjoin")
 
-        # for i in range(0, stationQueue.qsize()):
-        #     print(f"{i} in queue")
-        #     pop = stationQueue.get()
-        #     print(pop)
+        print(stationQueue.qsize())
+        for i in range(0, stationQueue.qsize()):
+            print(f"{i} in queue")
+            pop = stationQueue.get()
+            print(pop)
         # pool = multiprocessing.Pool(processes=num_processes)
         
         # results = pool.map(processStationChunk, chunks)

@@ -1,8 +1,0 @@
-# Job Info ----------------------------
-Job ID: 131008
-Node: node009
-Starting: 12/11/23 02:52:27
-
-# Run Results -------------------------
-Processing stations individually...
-slurmstepd: error: *** JOB 131008 ON node009 CANCELLED AT 2023-12-11T02:52:34 ***
