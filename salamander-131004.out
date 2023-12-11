@@ -1,0 +1,441 @@
+# Job Info ----------------------------
+Job ID: 131004
+Node: node008
+Starting: 12/11/23 02:40:09
+
+# Run Results -------------------------
+Process Process-1:
+Process Process-2:
+Process Process-3:
+Traceback (most recent call last):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/storage/homes/jtblake/undercover-salamander/./data/NOAAToJSON.py", line 139, in processStationQueue
+    if (value):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/site-packages/pandas/core/generic.py", line 1519, in __nonzero__
+    raise ValueError(
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+Traceback (most recent call last):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/storage/homes/jtblake/undercover-salamander/./data/NOAAToJSON.py", line 139, in processStationQueue
+    if (value):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/site-packages/pandas/core/generic.py", line 1519, in __nonzero__
+    raise ValueError(
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+Process Process-4:
+Traceback (most recent call last):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/storage/homes/jtblake/undercover-salamander/./data/NOAAToJSON.py", line 139, in processStationQueue
+    if (value):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/site-packages/pandas/core/generic.py", line 1519, in __nonzero__
+    raise ValueError(
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+Process Process-5:
+Process Process-6:
+Traceback (most recent call last):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/storage/homes/jtblake/undercover-salamander/./data/NOAAToJSON.py", line 139, in processStationQueue
+    if (value):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/site-packages/pandas/core/generic.py", line 1519, in __nonzero__
+    raise ValueError(
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+Process Process-7:
+Traceback (most recent call last):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/storage/homes/jtblake/undercover-salamander/./data/NOAAToJSON.py", line 139, in processStationQueue
+    if (value):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/site-packages/pandas/core/generic.py", line 1519, in __nonzero__
+    raise ValueError(
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+Traceback (most recent call last):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/storage/homes/jtblake/undercover-salamander/./data/NOAAToJSON.py", line 139, in processStationQueue
+    if (value):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/site-packages/pandas/core/generic.py", line 1519, in __nonzero__
+    raise ValueError(
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+Process Process-8:
+Traceback (most recent call last):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/storage/homes/jtblake/undercover-salamander/./data/NOAAToJSON.py", line 139, in processStationQueue
+    if (value):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/site-packages/pandas/core/generic.py", line 1519, in __nonzero__
+    raise ValueError(
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+Traceback (most recent call last):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/storage/homes/jtblake/undercover-salamander/./data/NOAAToJSON.py", line 139, in processStationQueue
+    if (value):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/site-packages/pandas/core/generic.py", line 1519, in __nonzero__
+    raise ValueError(
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+Process Process-9:
+Process Process-10:
+Process Process-11:
+Traceback (most recent call last):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/storage/homes/jtblake/undercover-salamander/./data/NOAAToJSON.py", line 139, in processStationQueue
+    if (value):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/site-packages/pandas/core/generic.py", line 1519, in __nonzero__
+    raise ValueError(
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+Traceback (most recent call last):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/storage/homes/jtblake/undercover-salamander/./data/NOAAToJSON.py", line 139, in processStationQueue
+    if (value):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/site-packages/pandas/core/generic.py", line 1519, in __nonzero__
+    raise ValueError(
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+Traceback (most recent call last):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/storage/homes/jtblake/undercover-salamander/./data/NOAAToJSON.py", line 139, in processStationQueue
+    if (value):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/site-packages/pandas/core/generic.py", line 1519, in __nonzero__
+    raise ValueError(
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+Process Process-12:
+Process Process-13:
+Process Process-14:
+Traceback (most recent call last):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/storage/homes/jtblake/undercover-salamander/./data/NOAAToJSON.py", line 139, in processStationQueue
+    if (value):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/site-packages/pandas/core/generic.py", line 1519, in __nonzero__
+    raise ValueError(
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+Traceback (most recent call last):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/storage/homes/jtblake/undercover-salamander/./data/NOAAToJSON.py", line 139, in processStationQueue
+    if (value):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/site-packages/pandas/core/generic.py", line 1519, in __nonzero__
+    raise ValueError(
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+Traceback (most recent call last):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/storage/homes/jtblake/undercover-salamander/./data/NOAAToJSON.py", line 139, in processStationQueue
+    if (value):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/site-packages/pandas/core/generic.py", line 1519, in __nonzero__
+    raise ValueError(
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+Process Process-15:
+Process Process-16:
+Traceback (most recent call last):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/storage/homes/jtblake/undercover-salamander/./data/NOAAToJSON.py", line 139, in processStationQueue
+    if (value):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/site-packages/pandas/core/generic.py", line 1519, in __nonzero__
+    raise ValueError(
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+Traceback (most recent call last):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/storage/homes/jtblake/undercover-salamander/./data/NOAAToJSON.py", line 139, in processStationQueue
+    if (value):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/site-packages/pandas/core/generic.py", line 1519, in __nonzero__
+    raise ValueError(
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+Process Process-17:
+Process Process-18:
+Traceback (most recent call last):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/storage/homes/jtblake/undercover-salamander/./data/NOAAToJSON.py", line 139, in processStationQueue
+    if (value):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/site-packages/pandas/core/generic.py", line 1519, in __nonzero__
+    raise ValueError(
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+Traceback (most recent call last):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/storage/homes/jtblake/undercover-salamander/./data/NOAAToJSON.py", line 139, in processStationQueue
+    if (value):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/site-packages/pandas/core/generic.py", line 1519, in __nonzero__
+    raise ValueError(
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+Process Process-19:
+Process Process-20:
+Traceback (most recent call last):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/storage/homes/jtblake/undercover-salamander/./data/NOAAToJSON.py", line 139, in processStationQueue
+    if (value):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/site-packages/pandas/core/generic.py", line 1519, in __nonzero__
+    raise ValueError(
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+Process Process-21:
+Process Process-22:
+Traceback (most recent call last):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/storage/homes/jtblake/undercover-salamander/./data/NOAAToJSON.py", line 139, in processStationQueue
+    if (value):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/site-packages/pandas/core/generic.py", line 1519, in __nonzero__
+    raise ValueError(
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+Traceback (most recent call last):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+Traceback (most recent call last):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/storage/homes/jtblake/undercover-salamander/./data/NOAAToJSON.py", line 139, in processStationQueue
+    if (value):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/site-packages/pandas/core/generic.py", line 1519, in __nonzero__
+    raise ValueError(
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/storage/homes/jtblake/undercover-salamander/./data/NOAAToJSON.py", line 139, in processStationQueue
+    if (value):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/site-packages/pandas/core/generic.py", line 1519, in __nonzero__
+    raise ValueError(
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+Process Process-23:
+Process Process-24:
+Traceback (most recent call last):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/storage/homes/jtblake/undercover-salamander/./data/NOAAToJSON.py", line 139, in processStationQueue
+    if (value):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/site-packages/pandas/core/generic.py", line 1519, in __nonzero__
+    raise ValueError(
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+Traceback (most recent call last):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/storage/homes/jtblake/undercover-salamander/./data/NOAAToJSON.py", line 139, in processStationQueue
+    if (value):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/site-packages/pandas/core/generic.py", line 1519, in __nonzero__
+    raise ValueError(
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+Process Process-25:
+Process Process-26:
+Traceback (most recent call last):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/storage/homes/jtblake/undercover-salamander/./data/NOAAToJSON.py", line 139, in processStationQueue
+    if (value):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/site-packages/pandas/core/generic.py", line 1519, in __nonzero__
+    raise ValueError(
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+Process Process-28:
+Process Process-27:
+Traceback (most recent call last):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/storage/homes/jtblake/undercover-salamander/./data/NOAAToJSON.py", line 139, in processStationQueue
+    if (value):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/site-packages/pandas/core/generic.py", line 1519, in __nonzero__
+    raise ValueError(
+Traceback (most recent call last):
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/storage/homes/jtblake/undercover-salamander/./data/NOAAToJSON.py", line 139, in processStationQueue
+    if (value):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/site-packages/pandas/core/generic.py", line 1519, in __nonzero__
+    raise ValueError(
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+Traceback (most recent call last):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/storage/homes/jtblake/undercover-salamander/./data/NOAAToJSON.py", line 139, in processStationQueue
+    if (value):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/site-packages/pandas/core/generic.py", line 1519, in __nonzero__
+    raise ValueError(
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+Process Process-29:
+Process Process-30:
+Traceback (most recent call last):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/storage/homes/jtblake/undercover-salamander/./data/NOAAToJSON.py", line 139, in processStationQueue
+    if (value):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/site-packages/pandas/core/generic.py", line 1519, in __nonzero__
+    raise ValueError(
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+Traceback (most recent call last):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/storage/homes/jtblake/undercover-salamander/./data/NOAAToJSON.py", line 139, in processStationQueue
+    if (value):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/site-packages/pandas/core/generic.py", line 1519, in __nonzero__
+    raise ValueError(
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+Process Process-31:
+Traceback (most recent call last):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/storage/homes/jtblake/undercover-salamander/./data/NOAAToJSON.py", line 139, in processStationQueue
+    if (value):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/site-packages/pandas/core/generic.py", line 1519, in __nonzero__
+    raise ValueError(
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+Process Process-33:
+Process Process-32:
+Traceback (most recent call last):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/storage/homes/jtblake/undercover-salamander/./data/NOAAToJSON.py", line 139, in processStationQueue
+    if (value):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/site-packages/pandas/core/generic.py", line 1519, in __nonzero__
+    raise ValueError(
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+Process Process-34:
+Traceback (most recent call last):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/storage/homes/jtblake/undercover-salamander/./data/NOAAToJSON.py", line 139, in processStationQueue
+    if (value):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/site-packages/pandas/core/generic.py", line 1519, in __nonzero__
+    raise ValueError(
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+Traceback (most recent call last):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/storage/homes/jtblake/undercover-salamander/./data/NOAAToJSON.py", line 139, in processStationQueue
+    if (value):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/site-packages/pandas/core/generic.py", line 1519, in __nonzero__
+    raise ValueError(
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+Process Process-35:
+Process Process-36:
+Traceback (most recent call last):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/storage/homes/jtblake/undercover-salamander/./data/NOAAToJSON.py", line 139, in processStationQueue
+    if (value):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/site-packages/pandas/core/generic.py", line 1519, in __nonzero__
+    raise ValueError(
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+Traceback (most recent call last):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/storage/homes/jtblake/undercover-salamander/./data/NOAAToJSON.py", line 139, in processStationQueue
+    if (value):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/site-packages/pandas/core/generic.py", line 1519, in __nonzero__
+    raise ValueError(
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+Processing stations individually...
+Traceback (most recent call last):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/queues.py", line 251, in _feed
+    send_bytes(obj)
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/connection.py", line 205, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/connection.py", line 416, in _send_bytes
+    self._send(header + buf)
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/connection.py", line 373, in _send
+    n = write(self._handle, buf)
+BrokenPipeError: [Errno 32] Broken pipe
+
+# CPU Info ----------------------------
+Architecture:          x86_64
+CPU op-mode(s):        32-bit, 64-bit
+Byte Order:            Little Endian
+CPU(s):                36
+On-line CPU(s) list:   0-35
+Thread(s) per core:    1
+Core(s) per socket:    18
+Socket(s):             2
+NUMA node(s):          2
+Vendor ID:             GenuineIntel
+CPU family:            6
+Model:                 85
+Model name:            Intel(R) Xeon(R) Gold 6140 CPU @ 2.30GHz
+Stepping:              4
+CPU MHz:               1000.213
+CPU max MHz:           3700.0000
+CPU min MHz:           1000.0000
+BogoMIPS:              4600.00
+Virtualization:        VT-x
+L1d cache:             32K
+L1i cache:             32K
+L2 cache:              1024K
+L3 cache:              25344K
+NUMA node0 CPU(s):     0-17
+NUMA node1 CPU(s):     18-35
+Flags:                 fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf eagerfpu pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch epb cat_l3 cdp_l3 intel_ppin intel_pt mba tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm cqm mpx rdt_a avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local ibpb ibrs stibp dtherm ida arat pln pts hwp hwp_act_window hwp_epp hwp_pkg_req pku ospke spec_ctrl intel_stibp

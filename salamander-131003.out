@@ -1,0 +1,118 @@
+# Job Info ----------------------------
+Job ID: 131003
+Node: node008
+Starting: 12/11/23 02:35:43
+
+# Run Results -------------------------
+0
+2: done!
+0
+25: done!
+0
+29: done!
+0
+23: done!
+0
+12: done!
+0
+4: done!
+0
+1: done!
+0
+31: done!
+0
+10: done!
+0
+7: done!
+0
+21: done!
+0
+20: done!
+0
+14: done!
+0
+18: done!
+0
+26: done!
+0
+30: done!
+0
+32: done!
+0
+33: done!
+0
+19: done!
+0
+0: done!
+0
+22: done!
+0
+34: done!
+0
+16: done!
+0
+15: done!
+0
+11: done!
+0
+27: done!
+0
+13: done!
+0
+6: done!
+0
+9: done!
+0
+3: done!
+0
+24: done!
+0
+17: done!
+0
+35: done!
+0
+8: done!
+0
+5: done!
+0
+28: done!
+Processing stations individually...
+<multiprocessing.queues.Queue object at 0x2aab063eb790>
+Traceback (most recent call last):
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/queues.py", line 251, in _feed
+    send_bytes(obj)
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/connection.py", line 205, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/connection.py", line 416, in _send_bytes
+    self._send(header + buf)
+  File "/home/jtblake/.conda/envs/701/lib/python3.10/multiprocessing/connection.py", line 373, in _send
+    n = write(self._handle, buf)
+BrokenPipeError: [Errno 32] Broken pipe
+
+# CPU Info ----------------------------
+Architecture:          x86_64
+CPU op-mode(s):        32-bit, 64-bit
+Byte Order:            Little Endian
+CPU(s):                36
+On-line CPU(s) list:   0-35
+Thread(s) per core:    1
+Core(s) per socket:    18
+Socket(s):             2
+NUMA node(s):          2
+Vendor ID:             GenuineIntel
+CPU family:            6
+Model:                 85
+Model name:            Intel(R) Xeon(R) Gold 6140 CPU @ 2.30GHz
+Stepping:              4
+CPU MHz:               1000.073
+CPU max MHz:           3700.0000
+CPU min MHz:           1000.0000
+BogoMIPS:              4600.00
+Virtualization:        VT-x
+L1d cache:             32K
+L1i cache:             32K
+L2 cache:              1024K
+L3 cache:              25344K
+NUMA node0 CPU(s):     0-17
+NUMA node1 CPU(s):     18-35
+Flags:                 fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf eagerfpu pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch epb cat_l3 cdp_l3 intel_ppin intel_pt mba tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm cqm mpx rdt_a avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local ibpb ibrs stibp dtherm ida arat pln pts hwp hwp_act_window hwp_epp hwp_pkg_req pku ospke spec_ctrl intel_stibp

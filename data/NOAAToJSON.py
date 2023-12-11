@@ -3,6 +3,7 @@ import numpy as np
 import json
 import requests
 import multiprocessing
+import sys
 
 placeholderColumns = ["ID", "Name", "County", "Latitude", "Longitude", "YearsArray", "YearsValues"]
 
@@ -120,10 +121,33 @@ def processStationChunk(chunk):
         row = processStation(value["ID"], value["Name"], value["Latitude"], value["Longitude"])
         if (row is not None):
             result.loc[len(result)] = row
-        if (i > 3):
+            print(f"{multiprocessing.current_process}: {row[0]}")
+        if (i > 20):
             break
         i+=1
+    print(f"{multiprocessing.current_process}: done!")
     return result
+
+def processStationQueue(TASK_NUMBER, workQueue, stationQueue, mutex):
+    i = 0
+    # while (not workQueue.empty()):
+    while (i < 1):
+        mutex.acquire()
+        if (not workQueue.empty()):
+            value = workQueue.get()
+        mutex.release()
+        if (value is not None):
+            row = processStation(value["ID"], value["Name"], value["Latitude"], value["Longitude"])
+            if (row is not None):
+                result = pd.DataFrame(columns=["ID", "NAME", "COUNTY", "STATE", "LAT", "LONG", "YEARS", "VALS"])
+                result.loc[len(result)] = row
+                stationQueue.put(result)
+                print(f"{TASK_NUMBER}: {row[0]}")
+                sys.stdout.flush()
+            print(stationQueue.qsize())
+        i+=1
+    print(f"{TASK_NUMBER}: done!")
+
 
 def processCountyChunk(chunk):
     return chunk.groupby(["COUNTY", "STATE"]).apply(averageCounty)
@@ -144,15 +168,38 @@ def processAllStations(param):
 
     if __name__ == '__main__':    
         print("Processing stations individually...")
-        pool = multiprocessing.Pool(processes=num_processes)
+        workQueue = multiprocessing.Queue()
+        stationQueue = multiprocessing.Queue()
+        mutex = multiprocessing.Lock()
+
+        for key, value in stateStations.iterrows():
+            workQueue.put(value)
+
+        processes = []
+        for i in range(0, num_processes):
+            p = multiprocessing.Process(target=processStationQueue, args=(i, workQueue, stationQueue, mutex))
+            processes.append(p)
+            p.start()
         
-        results = pool.map(processStationChunk, chunks)
+        print("prejoin")
+        for process in processes:
+            process.join()
+        print("postjoin")
+
+        # for i in range(0, stationQueue.qsize()):
+        #     print(f"{i} in queue")
+        #     pop = stationQueue.get()
+        #     print(pop)
+        # pool = multiprocessing.Pool(processes=num_processes)
         
-        pool.close()
-        pool.join()
+        # results = pool.map(processStationChunk, chunks)
         
-        stationFrame = pd.concat(results).reset_index(drop=True)
+        # pool.close()
+        # pool.join()
         
+        # stationFrame = pd.concat(results).reset_index(drop=True)
+        
+        return 
         print("Processing counties...")
         # Redefining chunk size here in case some stations weren't processed
         stationFrameLength = stationFrame.shape[0]

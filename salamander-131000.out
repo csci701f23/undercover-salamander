@@ -1,0 +1,483 @@
+# Job Info ----------------------------
+Job ID: 131000
+Node: node009
+Starting: 12/11/23 02:26:53
+
+# Run Results -------------------------
+25: US10adam033
+10: US10adam011
+4: US10adam003
+21: US10adam027
+13: US10adam015
+29: US10adam039
+31: US10adam043
+1: US10RMHS145
+20: US10adam025
+23: US10adam029
+14: US10adam016
+71274
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+2: US10ante003
+7: US10adam007
+71269
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+4: US10bann005
+71268
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+21: US10bann006
+71267
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+13: US10bann007
+71266
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+29: US10bann008
+71265
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+31: US10bann009
+71270
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+10: US10bann001
+11: US10adam012
+71262
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+23: US10blai004
+71261
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+14: US10blai005
+71260
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+2: US10blai006
+71259
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+7: US10blai008
+71258
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+4: US10blai010
+71257
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+21: US10blai011
+71255
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+29: US10blai013
+71256
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+13: US10blai012
+71254
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+31: US10boon002
+71252
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+11: US10boon004
+71253
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+10: US10boon003
+71251
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+23: US10boon005
+71250
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+14: US10boon006
+71249
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+2: US10boon007
+71248
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+7: US10boon008
+71247
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+4: US10boon009
+71246
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+21: US10boon010
+71245
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+29: US10boon011
+71244
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+13: US10box_001
+71243
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+31: US10box_003
+71242
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+11: US10box_004
+71271
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+25: US10arth002
+71240
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+23: US10box_006
+71241
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+10: US10box_005
+71238
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+2: US10box_008
+71239
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+14: US10box_007
+71235
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+21: US10box_013
+71237
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+7: US10box_009
+71264
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+1: US10blai001
+71263
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+20: US10blai003
+71232
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+31: US10box_023
+71231
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+11: US10box_024
+71230
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+25: US10box_030
+71228
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+10: US10boyd003
+71234
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+29: US10box_014
+71229
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+23: US10boyd002
+71226
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+14: US10brow001
+71224
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+7: US10brow004
+71225
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+21: US10brow003
+71223
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+1: US10brow005
+71222
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+20: US10brow006
+71221
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+31: US10brow007
+71220
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+11: US10brow008
+71233
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+13: US10box_020
+71218
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+10: US10buff001
+71217
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+29: US10buff002
+71216
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+23: US10buff003
+71215
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+14: US10buff004
+71214
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+7: US10buff005
+71213
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+21: US10buff006
+71212
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+1: US10buff007
+71211
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+20: US10buff008
+71210
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+31: US10buff010
+71209
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+11: US10buff011
+71208
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+13: US10buff012
+71207
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+10: US10buff013
+71236
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+4: US10box_010
+71205
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+23: US10buff017
+71206
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+29: US10buff015
+71203
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+7: US10buff019
+71201
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+1: US10buff025
+26: US10adam034
+71200
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+20: US10buff034
+71199
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+31: US10buff036
+71198
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+11: US10buff039
+71202
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+21: US10buff020
+71196
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+10: US10burt002
+71195
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+4: US10burt003
+71193
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+29: US10butl003
+71194
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+23: US10burt004
+71192
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+7: US10butl004
+71191
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+1: US10butl005
+71190
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+26: US10butl008
+71189
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+20: US10butl010
+71187
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+11: US10butl013
+71188
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+31: US10butl011
+71185
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+10: US10butl020
+71186
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+21: US10butl015
+71184
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+4: US10cass001
+71183
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+29: US10cass005
+71181
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+7: US10cass011
+71182
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+23: US10cass010
+71180
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+1: US10ceda001
+71179
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+26: US10ceda002
+71178
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+20: US10ceda003
+71177
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+11: US10ceda004
+71176
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+31: US10ceda005
+71175
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+10: US10ceda006
+71204
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+14: US10buff018
+71173
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+4: US10ceda009
+71174
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+21: US10ceda008
+71171
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+7: US10ceda011
+71170
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+23: US10ceda012
+71169
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+1: US10ceda013
+71197
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+13: US10burt001
+71167
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+20: US10ceda015
+71166
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+11: US10ceda016
+71165
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+31: US10ceda017
+71164
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+10: US10ceda020
+71168
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+26: US10ceda014
+71163
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+14: US10ceda021
+71161
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+21: US10chas001
+71160
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+7: US10chas002
+71159
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+23: US10chas003
+71157
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+13: US10chas005
+71219
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+25: US10brow009
+71156
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+20: US10chas006
+71154
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+31: US10chas008
+71155
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+11: US10chas007
+71153
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+10: US10chas009
+71152
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+26: US10chas010
+71151
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+14: US10chas011
+71150
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+21: US10chas012
+71149
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+7: US10chas013
+71162
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+4: US10ceda026
+71147
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+13: US10chas017
+71146
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+25: US10chas018
+71145
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+20: US10chas019
+71144
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+31: US10chas021
+71143
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+11: US10chas023
+71172
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+29: US10ceda010
+71141
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+26: US10chas025
+71140
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+14: US10chas026
+71139
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+21: US10chas027
+71138
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+7: US10chas028
+71137
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+4: US10chas029
+71136
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+13: US10chas030
+71135
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+25: US10chas031
+71134
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+20: US10chas032
+71133
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+31: US10chas033
+71132
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+11: US10chas034
+71131
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+29: US10chas035
+71130
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+26: US10chas036
+71142
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+10: US10chas024
+71158
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+1: US10chas004
+71127
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+7: US10cher001
+71128
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+21: US10chas038
+71125
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+13: US10cher005
+71129
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+14: US10chas037
+71123
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+20: US10cher007
+71122
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+31: US10cher008
+71121
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+11: US10cher009
+71126
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+4: US10cher004
+71124
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+25: US10cher006
+71120
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+29: US10cher010
+71119
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+26: US10cher011
+71116
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+7: US10cher014
+71117
+<multiprocessing.queues.Queue object at 0x2aab063eb880>
+1: US10cher013
+slurmstepd: error: *** JOB 131000 ON node009 CANCELLED AT 2023-12-11T02:28:24 ***
