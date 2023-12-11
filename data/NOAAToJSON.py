@@ -119,38 +119,19 @@ def averageCounty(countyGroup):
         dict[key_] = dict[key_][1]/dict[key_][0]
     return json.dumps(dict)
 
-def processStationChunk(chunk):
-    result = pd.DataFrame(columns=["ID", "NAME", "COUNTY", "STATE", "LAT", "LONG", "YEARS", "VALS"])
-    i = 0
-    for (key, value) in chunk.iterrows():
-        row = processStation(value["ID"], value["Name"], value["Latitude"], value["Longitude"])
-        if (row is not None):
-            result.loc[len(result)] = row
-            print(f"{multiprocessing.current_process}: {row[0]}")
-        if (i > 20):
-            break
-        i+=1
-    print(f"{multiprocessing.current_process}: done!")
-    return result
-
 def processStationQueue(TASK_NUMBER, workQueue, stationQueue, mutex):
-    i = 0
-    # while (not workQueue.empty()):
-    while (i < 1):
-        mutex.acquire()
+    while (not workQueue.empty()):
+        # mutex here?
         if (not workQueue.empty()):
             value = workQueue.get()
-        mutex.release()
         if (value is not None):
             row = processStation(value["ID"], value["Name"], value["Latitude"], value["Longitude"])
             if (row is not None):
                 result = pd.DataFrame(columns=["ID", "NAME", "COUNTY", "STATE", "LAT", "LONG", "YEARS", "VALS"])
                 result.loc[len(result)] = row
                 stationQueue.put(result)
-                print(f"{TASK_NUMBER}: {row[0]}")
-                sys.stdout.flush()
-            print(stationQueue.qsize())
-        i+=1
+            print(f"{TASK_NUMBER}: {row[0]}")
+            sys.stdout.flush()
     print(f"{TASK_NUMBER}: done!")
 
 
@@ -162,14 +143,6 @@ def processAllStations(param):
     stateStations = stationInformation.loc[stationInformation["ID"].str.contains("US")]
     # adapted parallelization start from: https://stackoverflow.com/questions/40357434/pandas-df-iterrows-parallelization
     num_processes = multiprocessing.cpu_count()
-    length = stateStations.shape[0]
-
-    chunk_size = int((length + num_processes - 1)/num_processes)
-
-    chunks = []
-
-    for i in range(0, length, chunk_size):
-        chunks.append(stateStations.iloc[i:min(i + chunk_size, length)])
 
     if __name__ == '__main__':    
         print("Processing stations individually...")
@@ -186,26 +159,14 @@ def processAllStations(param):
             processes.append(p)
             p.start()
         
-        print("prejoin")
         for process in processes:
             process.join()
-        print("postjoin")
-
-        print(stationQueue.qsize())
+        
+        stationFrame = pd.DataFrame(columns=["ID", "NAME", "COUNTY", "STATE", "LAT", "LONG", "YEARS", "VALS"])
+        # Add rows in queue to stationFrame
         for i in range(0, stationQueue.qsize()):
-            print(f"{i} in queue")
-            pop = stationQueue.get()
-            print(pop)
-        # pool = multiprocessing.Pool(processes=num_processes)
-        
-        # results = pool.map(processStationChunk, chunks)
-        
-        # pool.close()
-        # pool.join()
-        
-        # stationFrame = pd.concat(results).reset_index(drop=True)
-        
-        return 
+            stationFrame.add(stationQueue.get())
+                
         print("Processing counties...")
         # Redefining chunk size here in case some stations weren't processed
         stationFrameLength = stationFrame.shape[0]
@@ -223,8 +184,8 @@ def processAllStations(param):
         countyPool.join()
 
         countyData = pd.concat(county_results)
-        
+
         with open(f"./data/{param}_info_.json", "w+") as f:
             countyData.to_json(f, orient="table", indent=4)
     
-processAllStations("PRCP")
+processAllStations("SNOW")
