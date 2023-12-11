@@ -121,9 +121,10 @@ def averageCounty(countyGroup):
 
 def processStationQueue(TASK_NUMBER, workQueue, stationQueue, mutex):
     while (not workQueue.empty()):
-        # mutex here?
+        mutex.acquire()
         if (not workQueue.empty()):
             value = workQueue.get()
+        mutex.release()
         if (value is not None):
             row = processStation(value["ID"], value["Name"], value["Latitude"], value["Longitude"])
             if (row is not None):
@@ -189,4 +190,4 @@ def processAllStations(param):
         with open(f"./data/{param}_info_.json", "w+") as f:
             countyData.to_json(f, orient="table", indent=4)
     
-processAllStations("SNOW")
+processAllStations("TMAX")
