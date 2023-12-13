@@ -39,7 +39,7 @@ export default function Map ({ parameter, year, width, height, geoData, currentT
   const projection = d3
     .geoAlbersUsa()
     .scale(scale)
-    .translate([width / 2, height / 2]); // Center the map on the SVG
+    .translate([width / 1.8, height / 3]); // Center the map on the SVG
 
     // TODO: fix runtime using geoPath(project, context) to save as a graphics context
   const geoPathGenerator = d3.geoPath().projection(projection);
