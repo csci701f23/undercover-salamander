@@ -31,3 +31,8 @@ The website will be deployed to github pages on any PR to main - HOWEVER, in ord
 3. Click on the "github-pages" environment
 4. Change the setting for "Deployment branches and tags" to "Selected branches and tags"
 5. For whichever branch you want to allow the site to deploy from, add the name of that branch as a rule
+
+**License:**
+Full license under `LICENSE.txt`
+Copyright (c) <2023>, <Jeff Blake, Lauren Clarke, Cece Zieglerr>
+All rights reserved.
