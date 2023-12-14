@@ -3,7 +3,7 @@ name: deploy-website
 
 on:
   # Runs on pushes targeting the default branch
-  push:
+  pull_request:
     branches: ["main"]
 
   # Allows you to run this workflow manually from the Actions tab
@@ -37,7 +37,7 @@ jobs:
         uses: actions/upload-pages-artifact@v2
         with:
           # Upload the documentation
-          path: '.'
+          path: 'out'
       - name: deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2

@@ -1,3 +1,9 @@
+/* Copyright (c) 2023, <Jeff Blake, Lauren Clarke, Cece Ziegler >
+All rights reserved.
+
+This source code is licensed under the BSD-style license found in the
+LICENSE file in the root directory of this source tree. */
+
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 
 class MyDocument extends Document {
@@ -14,7 +20,7 @@ class MyDocument extends Document {
         <body>
           <header>
             <nav className="navbar">
-              <h2 className="logo"><a href="#home"><img src="/images/logo.png" alt="logo"></img></a></h2>
+              <h2 className="logo"><a href="#home"><img src="./images/logo.png" alt="logo"></img></a></h2>
               <input type="checkbox" id="menu-toggler"/>
               <label htmlFor="menu-toggler" id="hamburger-btn">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="24px" height="24px">
