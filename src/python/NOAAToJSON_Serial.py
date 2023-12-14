@@ -160,10 +160,10 @@ def processAllStations(param):
     countyData = processCountyChunk(stationResults)
 
     # NOTE: This path will need to be changed if you aren't running from sbatch ada-submit (the base undercover-salamander directory)
-    with open(f"./data/{param}_info_.json", "w+") as f:
+    with open(f"./data/{param}_info.json", "w+") as f:
         countyData.to_json(f, orient="table", indent=4)
 
 def main(param):
     processAllStations(param)
 
-main("TMIN")
+main("TMAX")
