@@ -110,7 +110,7 @@ def processStation(id, name, latitude, longitude):
     return [id, name, county, state, latitude, longitude, yearsSeries, yearlyVal]
 
 # Takes in a group from a specific county, averages vals
-def averageCounty(countyGroup):
+def reduceCounty(countyGroup):
     dict = {}
 
     # So much optimization can be done
@@ -134,7 +134,7 @@ def averageCounty(countyGroup):
     return json.dumps(dict)
 
 def processCountyChunk(chunk):
-    return chunk.groupby(["COUNTY", "STATE"]).apply(averageCounty)
+    return chunk.groupby(["COUNTY", "STATE"]).apply(reduceCounty)
 
 def processStationChunk(chunk):
     result = pd.DataFrame(columns=["ID", "NAME", "COUNTY", "STATE", "LAT", "LONG", "YEARS", "VALS"])
