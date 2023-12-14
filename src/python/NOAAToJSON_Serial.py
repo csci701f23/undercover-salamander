@@ -3,6 +3,13 @@ import numpy as np
 import json
 import requests
 import multiprocessing
+import sys
+import time
+
+# broken pipe handling
+# from https://www.geeksforgeeks.org/broken-pipe-error-in-python/:
+from signal import signal, SIGPIPE, SIG_DFL   
+signal(SIGPIPE,SIG_DFL) 
 
 placeholderColumns = ["ID", "Name", "County", "Latitude", "Longitude", "YearsArray", "YearsValues"]
 
@@ -64,8 +71,12 @@ def filterAndReduce(group):
     return reduceByParam(group)
 
 def processStation(id, name, latitude, longitude):
+    # try:
     individualData = pd.read_fwf(f"https://www1.ncdc.noaa.gov/pub/data/ghcn/daily/all/{id}.dly", colspecs=colspecs, header=None, names=colnames)
-
+    # except:
+    #     time.sleep(1)
+    #     return None
+    
     if (not (individualData["ELEMENT"].eq(param)).any()):
         return None
 
@@ -113,65 +124,37 @@ def averageCounty(countyGroup):
         dict[key_] = dict[key_][1]/dict[key_][0]
     return json.dumps(dict)
 
+def processCountyChunk(chunk):
+    return chunk.groupby(["COUNTY", "STATE"]).apply(averageCounty)
+
 def processStationChunk(chunk):
     result = pd.DataFrame(columns=["ID", "NAME", "COUNTY", "STATE", "LAT", "LONG", "YEARS", "VALS"])
-    i = 0
     for (key, value) in chunk.iterrows():
         row = processStation(value["ID"], value["Name"], value["Latitude"], value["Longitude"])
         if (row is not None):
             result.loc[len(result)] = row
-        if (i > 3):
-            break
-        i+=1
+        print(value["ID"])
+        sys.stdout.flush()
     return result
-
-def processCountyChunk(chunk):
-    return chunk.groupby(["COUNTY", "STATE"]).apply(averageCounty)
 
 def processAllStations(param):
     setParam(param)
     stateStations = stationInformation.loc[stationInformation["ID"].str.contains("US")]
-    # adapted parallelization start from: https://stackoverflow.com/questions/40357434/pandas-df-iterrows-parallelization
-    num_processes = multiprocessing.cpu_count()
-    length = stateStations.shape[0]
 
-    chunk_size = int((length + num_processes - 1)/num_processes)
+    print(f"Processing stations for {param} individually")
+    sys.stdout.flush()
+    stationResults = processStationChunk(stateStations)
 
-    chunks = []
+    print("Processing counties")
+    sys.stdout.flush()
 
-    for i in range(0, length, chunk_size):
-        chunks.append(stateStations.iloc[i:min(i + chunk_size, length)])
+    countyData = processCountyChunk(stationResults)
 
-    if __name__ == '__main__':    
-        print("Processing stations individually...")
-        pool = multiprocessing.Pool(processes=num_processes)
-        
-        results = pool.map(processStationChunk, chunks)
-        
-        pool.close()
-        pool.join()
-        
-        stationFrame = pd.concat(results).reset_index(drop=True)
-        
-        print("Processing counties...")
-        # Redefining chunk size here in case some stations weren't processed
-        stationFrameLength = stationFrame.shape[0]
-        stationFrame_chunk_size = int((stationFrame.shape[0] + num_processes - 1)/num_processes)
-        stationFrame_chunks = []
+    # NOTE: This path will need to be changed if you aren't running from sbatch ada-submit (the base undercover-salamander directory)
+    with open(f"./data/{param}_info_.json", "w+") as f:
+        countyData.to_json(f, orient="table", indent=4)
 
-        for i in range(0, stationFrameLength, stationFrame_chunk_size):
-            stationFrame_chunks.append(stationFrame.iloc[i:min(i + stationFrame_chunk_size, stationFrameLength)])
+def main(param):
+    processAllStations(param)
 
-        # Is there a way to have parallel -> serial -> parallel blocks without having to create a new pool with multiprocessing?
-        countyPool = multiprocessing.Pool(processes=num_processes)
-        county_results = countyPool.map(processCountyChunk, stationFrame_chunks)
-
-        countyPool.close()
-        countyPool.join()
-
-        countyData = pd.concat(county_results)
-        
-        with open(f"./data/{param}_info_.json", "w+") as f:
-            countyData.to_json(f, orient="table", indent=4)
-    
-processAllStations("PRCP")
+main("SNOW")
