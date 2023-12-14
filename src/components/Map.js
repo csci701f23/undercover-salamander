@@ -7,10 +7,8 @@ LICENSE file in the root directory of this source tree. */
 import * as d3 from 'd3';
 import numData from "../../data/PRCP_info.json"
 import Scale from './Scale';
-import { useState } from "react";
-// import { FeatureCollection } from 'geojson';
 
-export default function Map ({ parameter, year, width, height, geoData, currentTab }) {
+export default function Map ({ year, width, height, geoData, currentTab }) {
   // TODO: Extend the scale a bit so values like Alaska aren't just black (100+ precip)
   const getColorScale = (tab) => {
     switch (tab) {
