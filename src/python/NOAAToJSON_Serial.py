@@ -116,10 +116,14 @@ def averageCounty(countyGroup):
     # So much optimization can be done
     for key, value in countyGroup.iterrows():
         for i in range(0, len(value["YEARS"])):
-            yearKey = int(value['YEARS'][i])
-                                                                            # bad code
-            dict[yearKey] = [dict.get(yearKey, [0])[0] + 1, dict.get(yearKey, [0, 0])[1] + value["VALS"][i]]
-
+            try:
+                yearKey = int(value['YEARS'][i])
+                                                                                    # bad code
+                dict[yearKey] = [dict.get(yearKey, [0])[0] + 1, dict.get(yearKey, [0, 0])[1] + value["VALS"][i]]
+            except: 
+                print(f"int('ID') error at row: {value}, group:{countyGroup}")
+                sys.stdout.flush()
+                break
     for key_ in dict:
         dict[key_] = dict[key_][1]/dict[key_][0]
     return json.dumps(dict)
@@ -157,4 +161,4 @@ def processAllStations(param):
 def main(param):
     processAllStations(param)
 
-main("SNOW")
+main("TMIN")
