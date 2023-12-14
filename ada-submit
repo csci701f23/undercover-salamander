@@ -6,7 +6,7 @@
 #SBATCH --output=salamander-%j.out              # Name for output log file (%j is job ID)
 #SBATCH --cpus-per-task=36                      # Request the entire node
 #SBATCH --partition=long                        # Partition (queue) 
-#SBATCH --time=20:00:00                         # Time limit hrs:min:sec
+#SBATCH --time=4-00:00:00                       # Time limit hrs:min:sec
 #SBATCH --exclude=node[018-019]                 # Only use "original" nodes with 36 cores
 
 # DONT MODIFY THE SLURM OPTIONS ABOVE THIS LINE
@@ -20,7 +20,9 @@ echo "Starting: "`date +"%D %T"`
 echo -e "\n# Run Results -------------------------"
 # in a new environment, use "conda create -n {name} python={version}" in this project, version=3.10
 # use "conda activate 701" in terminal before sbatch
-python3 ./data/NOAAToJSON.py
+python3 ./data/NOAAToJSON_Serial.py
+
+echo "Ending: "`date +"%D %T"`
 
 # For reference, dump info about the processor
 echo -e "\n# CPU Info ----------------------------"

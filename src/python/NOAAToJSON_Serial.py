@@ -4,6 +4,7 @@ import json
 import requests
 import multiprocessing
 import sys
+import time
 
 # broken pipe handling
 # from https://www.geeksforgeeks.org/broken-pipe-error-in-python/:
@@ -70,8 +71,12 @@ def filterAndReduce(group):
     return reduceByParam(group)
 
 def processStation(id, name, latitude, longitude):
+    # try:
     individualData = pd.read_fwf(f"https://www1.ncdc.noaa.gov/pub/data/ghcn/daily/all/{id}.dly", colspecs=colspecs, header=None, names=colnames)
-
+    # except:
+    #     time.sleep(1)
+    #     return None
+    
     if (not (individualData["ELEMENT"].eq(param)).any()):
         return None
 
@@ -131,7 +136,7 @@ def processStationQueue(TASK_NUMBER, workQueue, stationQueue, mutex):
                 result = pd.DataFrame(columns=["ID", "NAME", "COUNTY", "STATE", "LAT", "LONG", "YEARS", "VALS"])
                 result.loc[len(result)] = row
                 stationQueue.put(result)
-            print(f"{TASK_NUMBER}: {value['ID']}")
+            print(f"{TASK_NUMBER}: {value['ID']}, queue remaining: {workQueue.qsize()}, {None if row is None else 'Some'}")
             sys.stdout.flush()
     print(f"{TASK_NUMBER}: done!")
 
@@ -139,55 +144,30 @@ def processStationQueue(TASK_NUMBER, workQueue, stationQueue, mutex):
 def processCountyChunk(chunk):
     return chunk.groupby(["COUNTY", "STATE"]).apply(averageCounty)
 
+def processStationChunk(chunk):
+    result = pd.DataFrame(columns=["ID", "NAME", "COUNTY", "STATE", "LAT", "LONG", "YEARS", "VALS"])
+    for (key, value) in chunk.iterrows():
+        row = processStation(value["ID"], value["Name"], value["Latitude"], value["Longitude"])
+        if (row is not None):
+            result.loc[len(result)] = row
+        print(value["ID"])
+        sys.stdout.flush()
+    return result
+
 def processAllStations(param):
     setParam(param)
     stateStations = stationInformation.loc[stationInformation["ID"].str.contains("US")]
-    # adapted parallelization start from: https://stackoverflow.com/questions/40357434/pandas-df-iterrows-parallelization
-    num_processes = multiprocessing.cpu_count()
 
-    if __name__ == '__main__':    
-        print(f"Creating data for parameter: {param}:\n")
-        print("Processing stations individually...")
-        workQueue = multiprocessing.Queue()
-        stationQueue = multiprocessing.Queue()
-        mutex = multiprocessing.Lock()
+    print(f"Processing stations for {param} individually")
+    sys.stdout.flush()
+    stationResults = processStationChunk(stateStations)
 
-        for key, value in stateStations.iterrows():
-            workQueue.put(value)
+    print("Processing counties")
+    sys.stdout.flush()
 
-        processes = []
-        for i in range(0, num_processes):
-            p = multiprocessing.Process(target=processStationQueue, args=(i, workQueue, stationQueue, mutex))
-            processes.append(p)
-            p.start()
-        
-        for process in processes:
-            process.join()
-        
-        stationFrame = pd.DataFrame(columns=["ID", "NAME", "COUNTY", "STATE", "LAT", "LONG", "YEARS", "VALS"])
-        # Add rows in queue to stationFrame
-        for i in range(0, stationQueue.qsize()):
-            stationFrame.add(stationQueue.get())
-                
-        print("Processing counties...")
-        # Redefining chunk size here in case some stations weren't processed
-        stationFrameLength = stationFrame.shape[0]
-        stationFrame_chunk_size = int((stationFrame.shape[0] + num_processes - 1)/num_processes)
-        stationFrame_chunks = []
+    countyData = processCountyChunk(stationResults)
 
-        for i in range(0, stationFrameLength, stationFrame_chunk_size):
-            stationFrame_chunks.append(stationFrame.iloc[i:min(i + stationFrame_chunk_size, stationFrameLength)])
-
-        # Is there a way to have parallel -> serial -> parallel blocks without having to create a new pool with multiprocessing?
-        countyPool = multiprocessing.Pool(processes=num_processes)
-        county_results = countyPool.map(processCountyChunk, stationFrame_chunks)
-
-        countyPool.close()
-        countyPool.join()
-
-        countyData = pd.concat(county_results)
-
-        with open(f"./data/{param}_info_.json", "w+") as f:
-            countyData.to_json(f, orient="table", indent=4)
+    with open(f"./data/{param}_info_.json", "w+") as f:
+        countyData.to_json(f, orient="table", indent=4)
     
-processAllStations("TMAX")
+processAllStations("SNOW")
