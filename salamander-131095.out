@@ -1,11 +1,11 @@
 # Job Info ----------------------------
-Job ID: 131082
+Job ID: 131095
 Node: node008
-Starting: 12/13/23 20:40:16
+Starting: 12/13/23 20:51:16
 
 # Run Results -------------------------
-python3: can't open file './data/test.py': [Errno 2] No such file or directory
-Ending: 12/13/23 20:40:17
+python3: can't open file '/storage/homes/jtblake/undercover-salamander/./test.py': [Errno 2] No such file or directory
+Ending: 12/13/23 20:51:17
 
 # CPU Info ----------------------------
 Architecture:          x86_64
@@ -22,7 +22,7 @@ CPU family:            6
 Model:                 85
 Model name:            Intel(R) Xeon(R) Gold 6140 CPU @ 2.30GHz
 Stepping:              4
-CPU MHz:               1000.073
+CPU MHz:               999.932
 CPU max MHz:           3700.0000
 CPU min MHz:           1000.0000
 BogoMIPS:              4600.00

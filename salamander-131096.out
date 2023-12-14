@@ -1,10 +1,11 @@
 # Job Info ----------------------------
-Job ID: 131088
+Job ID: 131096
 Node: node008
-Starting: 12/13/23 20:45:53
+Starting: 12/13/23 20:52:04
 
 # Run Results -------------------------
-Ending: 12/13/23 20:45:53
+python3: can't open file '/storage/homes/jtblake/undercover-salamander/./test.py': [Errno 2] No such file or directory
+Ending: 12/13/23 20:52:04
 
 # CPU Info ----------------------------
 Architecture:          x86_64

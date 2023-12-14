@@ -190,7 +190,8 @@ def processAllStations(param):
 
         countyData = pd.concat(county_results)
 
-        with open(f"../../data/{param}_info_.json", "w+") as f:
+        # NOTE: This path will need to be changed if you aren't running from sbatch ada-submit (the base undercover-salamander directory)
+        with open(f"./data/{param}_info_.json", "w+") as f:
             countyData.to_json(f, orient="table", indent=4)
     
 processAllStations("TMIN")

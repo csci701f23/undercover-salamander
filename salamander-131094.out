@@ -1,14 +1,11 @@
 # Job Info ----------------------------
-Job ID: 131086
+Job ID: 131094
 Node: node008
-Starting: 12/13/23 20:43:53
+Starting: 12/13/23 20:49:43
 
 # Run Results -------------------------
-Traceback (most recent call last):
-  File "/storage/homes/jtblake/undercover-salamander/./src/python/test.py", line 7, in <module>
-    with open(f"../../data/a.json", "w+") as f:
-FileNotFoundError: [Errno 2] No such file or directory: '../../data/a.json'
-Ending: 12/13/23 20:43:53
+python3: can't open file '/storage/homes/jtblake/undercover-salamander/./test.py': [Errno 2] No such file or directory
+Ending: 12/13/23 20:49:43
 
 # CPU Info ----------------------------
 Architecture:          x86_64
@@ -25,7 +22,7 @@ CPU family:            6
 Model:                 85
 Model name:            Intel(R) Xeon(R) Gold 6140 CPU @ 2.30GHz
 Stepping:              4
-CPU MHz:               1000.073
+CPU MHz:               999.932
 CPU max MHz:           3700.0000
 CPU min MHz:           1000.0000
 BogoMIPS:              4600.00
