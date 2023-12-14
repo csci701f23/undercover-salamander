@@ -1,3 +1,9 @@
+/* Copyright (c) 2023, <Jeff Blake, Lauren Clarke, Cece Ziegler >
+All rights reserved.
+
+This source code is licensed under the BSD-style license found in the
+LICENSE file in the root directory of this source tree. */
+
 import * as d3 from 'd3';
 import numData from "../../data/PRCP_info.json"
 import Scale from './Scale';
@@ -56,7 +62,8 @@ export default function Map ({ parameter, year, width, height, geoData, currentT
       // Extra check for if the given year doesn't exist
       const color = formattedRegionValue ? colorScale(formattedRegionValue) : "lightgrey";
 
-      const tooltipText = `${shape.properties.NAME}, ${shape.properties.STATE}, ${formattedRegionValue}mm`;
+      const numVal = formattedRegionValue ? `${formattedRegionValue}mm` : `${formattedRegionValue}`;
+      const tooltipText = `${shape.properties.NAME}, ${shape.properties.STATE}, ${numVal}`;
 
       return (
         <path
