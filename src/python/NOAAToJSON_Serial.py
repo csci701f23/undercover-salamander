@@ -124,23 +124,6 @@ def averageCounty(countyGroup):
         dict[key_] = dict[key_][1]/dict[key_][0]
     return json.dumps(dict)
 
-def processStationQueue(TASK_NUMBER, workQueue, stationQueue, mutex):
-    while (not workQueue.empty()):
-        mutex.acquire()
-        if (not workQueue.empty()):
-            value = workQueue.get()
-        mutex.release()
-        if (value is not None):
-            row = processStation(value["ID"], value["Name"], value["Latitude"], value["Longitude"])
-            if (row is not None):
-                result = pd.DataFrame(columns=["ID", "NAME", "COUNTY", "STATE", "LAT", "LONG", "YEARS", "VALS"])
-                result.loc[len(result)] = row
-                stationQueue.put(result)
-            print(f"{TASK_NUMBER}: {value['ID']}, queue remaining: {workQueue.qsize()}, {None if row is None else 'Some'}")
-            sys.stdout.flush()
-    print(f"{TASK_NUMBER}: done!")
-
-
 def processCountyChunk(chunk):
     return chunk.groupby(["COUNTY", "STATE"]).apply(averageCounty)
 
@@ -170,5 +153,8 @@ def processAllStations(param):
     # NOTE: This path will need to be changed if you aren't running from sbatch ada-submit (the base undercover-salamander directory)
     with open(f"./data/{param}_info_.json", "w+") as f:
         countyData.to_json(f, orient="table", indent=4)
-    
-processAllStations("SNOW")
+
+def main(param):
+    processAllStations(param)
+
+main("SNOW")
