@@ -167,7 +167,7 @@ def processAllStations(param):
 
     countyData = processCountyChunk(stationResults)
 
-    with open(f"./data/{param}_info_.json", "w+") as f:
+    with open(f"../../data/{param}_info_.json", "w+") as f:
         countyData.to_json(f, orient="table", indent=4)
     
 processAllStations("SNOW")
