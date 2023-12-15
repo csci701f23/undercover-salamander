@@ -8,6 +8,7 @@ Visualizing how weather patterns have changed over time can be an essential tool
 ### How to Build, Run, and Deploy
 
 **To compile and test:**
+
 On install: npm install (to install dependencies)
 
 To run on a local server: npm run dev
@@ -15,6 +16,7 @@ To run on a local server: npm run dev
 Go on localhost:3000 to see a running version of the server!
 
 **To compile data:**
+
 To process different station data, change the parameters on the last line in `data/NOAAToJSON.py`, where it calls "processAllStations(_)". The 4 parameters defined are:
 * PRCP - rainfall
 * SNOW - snowfall
@@ -22,6 +24,7 @@ To process different station data, change the parameters on the last line in `da
 * TMIN - minimmum temperature
 
 **To deploy:**
+
 To compile the static pages to be deployed: npm run build
 
 The website will be deployed to github pages on any PR to main - HOWEVER, in order to make sure the checks do not fail the job, the following steps must be followed BEFORE attempting to deploy:
