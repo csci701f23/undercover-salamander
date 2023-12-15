@@ -21,7 +21,7 @@ The scroll bar is a React component that is designed to allow the user to contro
 * setIsPlaying (function): a function to toggle the play/pause state
 
 ### useEffect hook
-the useEffect hook manages the interval for the automatic year incrementation when playback is active. The currentSpeed sets the interval and it is cleared when the playback is paused or when the slider reaches the end.
+The useEffect hook manages the interval for the automatic year incrementation when playback is active. The currentSpeed sets the interval and it is cleared when the playback is paused or when the slider reaches the end.
 
 ### event handlers
 * onYearChange (function): updates the current year when there is user interaction
