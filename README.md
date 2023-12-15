@@ -55,5 +55,7 @@ Below the visualization section, users can explore the importance of our project
 
 ### License:
 Full license under `LICENSE.txt`
+
 Copyright (c) <2023>, <Jeff Blake, Lauren Clarke, Cece Zieglerr>
+
 All rights reserved.
