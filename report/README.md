@@ -43,6 +43,8 @@ Some future work for our project could include the parallelization of the data p
 
 [^newell]: Newell, R., Dale, A., & Winters, C. (2016). A picture is worth a thousand data points: Exploring visualizations as tools for connecting the public to climate change research. Cogent Social Sciences, 2(1), [DOI: 10.1080/23311886.2016.1201885](https://www.tandfonline.com/doi/full/10.1080/23311886.2016.1201885)
 
+[^noaa]: Menne, M.J., I. Durre, B. Korzeniewski, S. McNeill, K. Thomas, X. Yin, S. Anthony, R. Ray, R.S. Vose, B.E.Gleason, and T.G. Houston, 2012: Global Historical Climatology Network - Daily (GHCN-Daily), Version 3.30. NOAA National Climatic Data Center. http://doi.org/10.7289/V5D21VHZ [access date].
+
 [^nocke]: Nocke, T., Sterzel, T., Böttinger, M., & Wrobel, M. (2008). Visualization of Climate and Climate Change Data: An Overview. in Ehlers et al. (Eds.) Digital Earth Summit on Geoinformatics 2008: Tools for Global Change Research (ISDE'08), Wichmann, Heidelberg, 226-232. https://www.researchgate.net/publication/241401725_Visualization_of_Climate_and_Climate_Change_Data_An_Overview
 
 [^noaa]: Menne, M.J., I. Durre, B. Korzeniewski, S. McNeill, K. Thomas, X. Yin, S. Anthony, R. Ray, R.S. Vose, B.E.Gleason, and T.G. Houston, 2012: Global Historical Climatology Network - Daily (GHCN-Daily), Version 3.30. NOAA National Climatic Data Center. http://doi.org/10.7289/V5D21VHZ [access date].

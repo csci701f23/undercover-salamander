@@ -1,3 +1,9 @@
+# Copyright (c) 2023, <Jeff Blake, Lauren Clarke, Cece Ziegler >
+# All rights reserved.
+
+# This source code is licensed under the BSD-style license found in the
+# LICENSE file in the root directory of this source tree. 
+
 # TODO: Fix syncronization issues. As it stands, the serial approach is much faster
 
 import pandas as pd

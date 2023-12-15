@@ -1,7 +1,7 @@
 # REACT DOCUMENTATION:
 
 # MapViewer Component Documentation
-Initializes the below components (ScrollBar, Map, TabBar, and Scale) and handles their state if needed 
+Initializes the below components (ScrollBar, Map, TabBar, and Scale) and handles their state if needed.
 
 ### State handlers
 * [currentYear, setCurrentYear]: Handles the year being set by ScrollBar
@@ -9,7 +9,7 @@ Initializes the below components (ScrollBar, Map, TabBar, and Scale) and handles
 * [currentSpeed, setCurrentSpeed]: Handles the speed of the ScrollBar's scroll
 * [isPlaying, setIsPlaying]: Handles whether or not the ScrollBar is passively scrolling
 
-# Scroll Bar Component Documentation
+# ScrollBar Component Documentation
 The scroll bar is a React component that is designed to allow the user to control the time-based scroll functionality of our program. It includes a scroll bar, a pause button and forward and backward buttons that the user can operate to change the year they want to be displayed.
 
 ### Props
@@ -37,7 +37,7 @@ the useEffect hook manages the interval for the automatic year incrementation wh
 * Control Buttons: includes buttons for incrementing and decrementing the year, pausing the playback, and adjusting the playback speed
 
 # Map Component Documentation
-The map is a component that displays an svg image of a chloropleth map. This map is changed by year (provided as state from the scroll bar) and parameter
+The map is a component that displays an svg image of a chloropleth map. This map is changed by year (provided as a state from the scroll bar) and parameter
 (provided as state from the tab bar). The background counties are colored in based on a scale (described in the scale component) and depending on their
 values received from the NOAA data.
 
@@ -55,14 +55,14 @@ values received from the NOAA data.
 * Map display: displays the whole svg image including the counties as a background, colored in according to the value of the county on the current year
 
 # TabBar Component Documentation
-The TabBar component acts as a way for the user to control which parameter is being viewed on the map. These parameters include PRCP, TMAX, TMIN, and SNOW
+The TabBar component acts as a way for the user to control which parameter is being viewed on the map. These parameters include PRCP, TMAX, TMIN, and SNOW.
 
 ### Props
 * currentTab (String): A piece of state handled by the MapViewer acts as a parameter to decide which tab is active
 * setCurrentTab (function): A function that changes the piece of state currentTab as needed (onClick of a new tab)
 
 ### event handler
-* Button's onClick: Listens for clicks of the buttons corresponding to individual parameters. When that click is fired, currentTab will change to that parameter.
+* Button's onClick: Listens for clicks of the buttons corresponding to individual parameters. When that click is fired, currentTab will change to that parameter
 
 ### UI components
 * Parameter buttons: The individual tabs that can be clicked on to change the state of the map
@@ -83,7 +83,7 @@ The scale creates a color key for the values displayed on the map based on a giv
 # PYTHON DOCUMENTATION:
 
 # NOAAToJSON_Serial Documentation
-A serial approach to creating the JSON data for the map by aggregating data from NOAA and averaging by county
+A serial approach to creating the JSON data for the map by aggregating data from NOAA and averaging by county.
 
 ### Props
 * param (String): Defines which parameter data will be gathered for (PRCP, TMAX, TMIN, SNOW)
