@@ -21,7 +21,8 @@ export default function MapViewer() {
     return (
         <div className="MapViewer">
             <TabBar currentTab={currentTab} setCurrentTab={setCurrentTab}></TabBar>
-            <Map parameter={currentTab} year={currentYear} width={screenSize.width} height={screenSize.height} geoData={background} currentTab={currentTab}/>
+            <Map parameter={currentTab} year={currentYear} width={1366} height={500} geoData={background} currentTab={currentTab}/>
+            {/* TODO: in above line change to "width={screenSize.width} height={screenSize.height}" without making the website look funky */}
             <ScrollBar currentYear={currentYear}
             setCurrentYear={setCurrentYear}
             currentSpeed={currentSpeed}
