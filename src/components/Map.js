@@ -10,6 +10,7 @@ import maxtData from "../../data/TMAX_info.json"
 import Scale from './Scale';
 
 export default function Map ({ year, width, height, geoData, currentTab }) {
+export default function Map ({ year, width, height, geoData, currentTab }) {
   // TODO: Extend the scale a bit so values like Alaska aren't just black (100+ precip)
   const getData = (tab) => {
     switch (currentTab) {
@@ -80,6 +81,9 @@ export default function Map ({ year, width, height, geoData, currentTab }) {
           fill={color}
           fillOpacity={0.7}
           onClick={() => console.log(`${shape.properties.NAME}, ${shape.properties.STATE},  ${regionValue}`)}
+          >
+            <title>{tooltipText}</title>
+          </path>
           >
             <title>{tooltipText}</title>
           </path>
