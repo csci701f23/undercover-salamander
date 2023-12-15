@@ -9,7 +9,9 @@ Visualizing how weather patterns have changed over time can be an essential tool
 
 **To compile and test:**
 On install: npm install (to install dependencies)
+
 To run on a local server: npm run dev
+
 Go on localhost:3000 to see a running version of the server!
 
 **To compile data:**
