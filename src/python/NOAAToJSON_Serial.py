@@ -116,22 +116,31 @@ def processStation(id, name, latitude, longitude):
     return [id, name, county, state, latitude, longitude, yearsSeries, yearlyVal]
 
 # Takes in a group from a specific county, averages vals
-def averageCounty(countyGroup):
+def reduceCounty(countyGroup):
     dict = {}
 
     # So much optimization can be done
     for key, value in countyGroup.iterrows():
         for i in range(0, len(value["YEARS"])):
-            yearKey = int(value['YEARS'][i])
-                                                                            # bad code
-            dict[yearKey] = [dict.get(yearKey, [0])[0] + 1, dict.get(yearKey, [0, 0])[1] + value["VALS"][i]]
-
-    for key_ in dict:
-        dict[key_] = dict[key_][1]/dict[key_][0]
+            try:
+                yearKey = int(value['YEARS'][i])
+                if (param in ["PRCP", "SNOW"]):                                       # bad code
+                    dict[yearKey] = [dict.get(yearKey, [0])[0] + 1, dict.get(yearKey, [0, 0])[1] + value["VALS"][i]]
+                elif (param == "TMAX"):
+                    dict[yearKey] = max(dict.get(yearKey, float('-inf')), value["VALS"][i])
+                elif (param == "TMIN"):
+                    dict[yearKey] = min(dict.get(yearKey, float('inf')), value["VALS"][i])
+            except: 
+                print(f"int('ID') error at row: {value}, group:{countyGroup}")
+                sys.stdout.flush()
+                break
+    if (param in ["PRCP", "SNOW"]):
+        for key_ in dict:
+            dict[key_] = dict[key_][1]/dict[key_][0]
     return json.dumps(dict)
 
 def processCountyChunk(chunk):
-    return chunk.groupby(["COUNTY", "STATE"]).apply(averageCounty)
+    return chunk.groupby(["COUNTY", "STATE"]).apply(reduceCounty)
 
 def processStationChunk(chunk):
     result = pd.DataFrame(columns=["ID", "NAME", "COUNTY", "STATE", "LAT", "LONG", "YEARS", "VALS"])
@@ -163,4 +172,4 @@ def processAllStations(param):
 def main(param):
     processAllStations(param)
 
-main("SNOW")
+main("TMIN")
