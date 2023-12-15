@@ -16,6 +16,42 @@ Our project addresses some of the gaps that exist in current climate research. P
 In visualizing climate data, we are providing an accessible resource for climate education. We hope that more people will be more likely to act as a result of this project–-knowledge alone is not enough to reverse the effects of climate change, and we need as many people as possible fighting against it.
 
 
+# Methodology
+
+## Scroll Bar Component
+The scroll bar is a React component that is designed to allow the user to control the time-based scroll functionality of our program. It includes a scroll bar, a pause button and forward and backward buttons that the user can operate to change the year they want to be displayed. The purpose of the scroll bar is to allow the user to have control over what year they want to see and when. They can decide if they want the simulation to play continuously and at what speed or if they want to focus on viewing only one map at a time for as long as they want by pausing the simulation. The scroll bar is build using react js and more specifics of this methodology are described below.
+
+### Props
+Props are used to pass data from a parent component to a child component. They are immutable, meaning the child can only read the information from the parent but cannot modify it. Below are props that are used in the scroll bar component
+
+* currentYear (Date): contains the value of the year being displayed on the scroll bar
+* setCurrentYear (function): A function to update the current year when the user interacts with the slider or buttons
+* currentSpeed (number): value of the current speed the playback is running at
+* setCurrentSpeed (function): a function to update the playback speed when user interacts with the speed buttons
+* isPlaying (boolean): a flag to indicate if the playback is playing or paused
+* setIsPlaying (function): a function to toggle the play/pause state
+
+### useEffect hook
+A useEffect hook allows us to perform side tasks within functional components, such as fetching data. In the scroll bar code, the useEffect hook manages the interval for the automatic year incrementation when playback is active. The currentSpeed sets the interval and it is cleared when the playback is paused or when the slider reaches the end.
+
+### event handlers
+Event handlers are functions that are triggered in response to specific events such as clicking a button. Below are the event handlers that are used to change the state of different variables within the scroll bar component. 
+
+* onYearChange (function): updates the current year when there is user interaction
+* onSpeedChange (function): updates the playback speed when there is user interaction
+* playPause (function): updates the play/pause state when the play/pause button is clicked
+* decrementYear (function): Decreases the displayed year by one when the user clicks the corresponding button
+* incrementYear (function): increases the displayed year by one when the user clicks the corresponding button
+
+### UI components
+User interface components are aspects of the code that specify styling and functionality for the user. Below are different UI components implemented in the scroll bar.
+
+* Year slider: allows the user to drag the slider through a specified year range
+* Current Year Display: displays the current year obtained from the slider or buttons
+* Current Month Display: displays the current month based on the slider and buttons
+* Control Buttons: includes buttons for incrementing and decrementing the year, pausing the playback, and adjusting the playback speed
+
+
 # References
 [^cho]: Cho, R. (2023). Climate Education in the U.S.: Where It Stands, and Why It Matters. State of the Planet | Columbia Climate School. https://news.climate.columbia.edu/2023/02/09/climate-education-in-the-u-s-where-it-stands-and-why-it-matters/
 
