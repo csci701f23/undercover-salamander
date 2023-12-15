@@ -40,24 +40,8 @@ export default function Map ({ year, width, height, geoData, currentTab }) {
           .range(["#E5fAC0", "#B4E197", "#83BD75", "#4E944F", "#2A6D2B"]), 10, "mm"];
       };
   }
-  // const getData = (tab) => {
-  //   switch(tab) {
-  //     case 'PRCP':
-  //       return prcpData;
-  //     case 'SNOW':
-  //       return prcpData;
-  //     case 'MAXT':
-  //       return maxtData;
-  //     case 'MINT':
-  //       return prcpData;
-  //     default:
-  //       return prcpData;
-  //   }
-  // }
 
   const [numData, colorScale, dataScaleFactor, unit] = getData(currentTab);
-  // const colorScale = getScale(currentTab);
-  // const numData = getData(currentTab);
 
   const yearConst = `${year}`.split(" ")[3];
 
