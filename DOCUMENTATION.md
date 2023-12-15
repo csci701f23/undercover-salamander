@@ -1,7 +1,7 @@
 # REACT DOCUMENTATION:
 
 # MapViewer Component Documentation
-Initializes the below components (ScrollBar, Map, TabBar, and Scale) and handles their state if needed .
+Initializes the below components (ScrollBar, Map, TabBar, and Scale) and handles their state if needed.
 
 ### State handlers
 * [currentYear, setCurrentYear]: Handles the year being set by ScrollBar
