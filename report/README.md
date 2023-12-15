@@ -34,42 +34,6 @@ For our backend, we processed data from NOAA's 70,000 United States weather stat
 # Discussion
 Some future work for our project could include the parallelization of the data processing, as an approach was determined using a work queue system, but was not given enough time for debugging or full implementation. This could be improved through syncronization debugging and downloading the data before processing to prevent the limiting factor of requesting NOAA or Nominatim (geocoding API). Alternatively, adding functionality that actively fetches the data from NOAA on update (particularly when the current year ends) would be a way to add dynamic changes to the site.
 
-# Methodology
-
-## Scroll Bar Component
-The scroll bar is a React component that is designed to allow the user to control the time-based scroll functionality of our program. It includes a scroll bar, a pause button and forward and backward buttons that the user can operate to change the year they want to be displayed. The purpose of the scroll bar is to allow the user to have control over what year they want to see and when. They can decide if they want the simulation to play continuously and at what speed or if they want to focus on viewing only one map at a time for as long as they want by pausing the simulation. The scroll bar is build using react js and more specifics of this methodology are described below.
-
-### Props
-Props are used to pass data from a parent component to a child component. They are immutable, meaning the child can only read the information from the parent but cannot modify it. Below are props that are used in the scroll bar component
-
-* currentYear (Date): contains the value of the year being displayed on the scroll bar
-* setCurrentYear (function): A function to update the current year when the user interacts with the slider or buttons
-* currentSpeed (number): value of the current speed the playback is running at
-* setCurrentSpeed (function): a function to update the playback speed when user interacts with the speed buttons
-* isPlaying (boolean): a flag to indicate if the playback is playing or paused
-* setIsPlaying (function): a function to toggle the play/pause state
-
-### useEffect hook
-A useEffect hook allows us to perform side tasks within functional components, such as fetching data. In the scroll bar code, the useEffect hook manages the interval for the automatic year incrementation when playback is active. The currentSpeed sets the interval and it is cleared when the playback is paused or when the slider reaches the end.
-
-### event handlers
-Event handlers are functions that are triggered in response to specific events such as clicking a button. Below are the event handlers that are used to change the state of different variables within the scroll bar component. 
-
-* onYearChange (function): updates the current year when there is user interaction
-* onSpeedChange (function): updates the playback speed when there is user interaction
-* playPause (function): updates the play/pause state when the play/pause button is clicked
-* decrementYear (function): Decreases the displayed year by one when the user clicks the corresponding button
-* incrementYear (function): increases the displayed year by one when the user clicks the corresponding button
-
-### UI components
-User interface components are aspects of the code that specify styling and functionality for the user. Below are different UI components implemented in the scroll bar.
-
-* Year slider: allows the user to drag the slider through a specified year range
-* Current Year Display: displays the current year obtained from the slider or buttons
-* Current Month Display: displays the current month based on the slider and buttons
-* Control Buttons: includes buttons for incrementing and decrementing the year, pausing the playback, and adjusting the playback speed
-
-
 # References
 [^cho]: Cho, R. (2023). Climate Education in the U.S.: Where It Stands, and Why It Matters. State of the Planet | Columbia Climate School. https://news.climate.columbia.edu/2023/02/09/climate-education-in-the-u-s-where-it-stands-and-why-it-matters/
 
@@ -79,6 +43,6 @@ User interface components are aspects of the code that specify styling and funct
 
 [^newell]: Newell, R., Dale, A., & Winters, C. (2016). A picture is worth a thousand data points: Exploring visualizations as tools for connecting the public to climate change research. Cogent Social Sciences, 2(1), [DOI: 10.1080/23311886.2016.1201885](https://www.tandfonline.com/doi/full/10.1080/23311886.2016.1201885)
 
-[^nocke]: Nocke, T., Sterzel, T., Böttinger, M., & Wrobel, M. (2008). Visualization of Climate and Climate Change Data: An Overview. in Ehlers et al. (Eds.) Digital Earth Summit on Geoinformatics 2008: Tools for Global Change Research (ISDE'08), Wichmann, Heidelberg, 226-232. https://www.researchgate.net/publication/241401725_Visualization_of_Climate_and_Climate_Change_Data_An_Overview
-
 [^noaa]: Menne, M.J., I. Durre, B. Korzeniewski, S. McNeill, K. Thomas, X. Yin, S. Anthony, R. Ray, R.S. Vose, B.E.Gleason, and T.G. Houston, 2012: Global Historical Climatology Network - Daily (GHCN-Daily), Version 3.30. NOAA National Climatic Data Center. http://doi.org/10.7289/V5D21VHZ [access date].
+
+[^nocke]: Nocke, T., Sterzel, T., Böttinger, M., & Wrobel, M. (2008). Visualization of Climate and Climate Change Data: An Overview. in Ehlers et al. (Eds.) Digital Earth Summit on Geoinformatics 2008: Tools for Global Change Research (ISDE'08), Wichmann, Heidelberg, 226-232. https://www.researchgate.net/publication/241401725_Visualization_of_Climate_and_Climate_Change_Data_An_Overview
