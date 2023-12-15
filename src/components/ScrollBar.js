@@ -1,3 +1,9 @@
+/* Copyright (c) 2023, <Jeff Blake, Lauren Clarke, Cece Ziegler >
+All rights reserved.
+
+This source code is licensed under the BSD-style license found in the
+LICENSE file in the root directory of this source tree. */
+
 import React, { useEffect } from "react";
 
 export default function ScrollBar({
@@ -75,8 +81,6 @@ export default function ScrollBar({
       />
       {/* Display the current year */}
       <output>{`Year: ${currentYear instanceof Date ? currentYear.getFullYear() : currentYear}`}</output>
-      {/* Display the current month */}
-      <output>{`Month: ${currentYear instanceof Date ? currentYear.toLocaleString("default", { month: "long" }) : ''}`}</output>
 
 
       {/* Control buttons */}
