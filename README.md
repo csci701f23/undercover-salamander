@@ -21,6 +21,7 @@ To process different station data, change the parameters on the last line in `da
 
 **To deploy:**
 To compile the static pages to be deployed: npm run build
+
 The website will be deployed to github pages on any PR to main - HOWEVER, in order to make sure the checks do not fail the job, the following steps must be followed BEFORE attempting to deploy:
 1. Go to Settings
 2. Click on the Environments tab on the sidebar
