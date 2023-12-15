@@ -15,6 +15,9 @@ Our project addresses some of the gaps that exist in current climate research. P
 
 In visualizing climate data, we are providing an accessible resource for climate education. We hope that more people will be more likely to act as a result of this project–-knowledge alone is not enough to reverse the effects of climate change, and we need as many people as possible fighting against it.
 
+# Methodology
+
+
 
 # References
 [^cho]: Cho, R. (2023). Climate Education in the U.S.: Where It Stands, and Why It Matters. State of the Planet | Columbia Climate School. https://news.climate.columbia.edu/2023/02/09/climate-education-in-the-u-s-where-it-stands-and-why-it-matters/

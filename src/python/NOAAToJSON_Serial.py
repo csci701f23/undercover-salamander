@@ -71,11 +71,12 @@ def filterAndReduce(group):
     return reduceByParam(group)
 
 def processStation(id, name, latitude, longitude):
-    # try:
-    individualData = pd.read_fwf(f"https://www1.ncdc.noaa.gov/pub/data/ghcn/daily/all/{id}.dly", colspecs=colspecs, header=None, names=colnames)
-    # except:
-    #     time.sleep(1)
-    #     return None
+    while (True):
+        try:
+            individualData = pd.read_fwf(f"https://www1.ncdc.noaa.gov/pub/data/ghcn/daily/all/{id}.dly", colspecs=colspecs, header=None, names=colnames)
+            break
+        except:
+            time.sleep(1)
     
     if (not (individualData["ELEMENT"].eq(param)).any()):
         return None
