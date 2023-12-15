@@ -7,6 +7,8 @@ LICENSE file in the root directory of this source tree. */
 import * as d3 from 'd3';
 import prcpData from "../../data/PRCP_info.json"
 import maxtData from "../../data/TMAX_info.json"
+
+import snowData from "../../data/SNOW_info.json"
 import Scale from './Scale';
 
 export default function Map ({ year, width, height, geoData, currentTab }) {
@@ -20,7 +22,7 @@ export default function Map ({ year, width, height, geoData, currentTab }) {
           .range(["#E5fAC0", "#B4E197", "#83BD75", "#4E944F", "#2A6D2B"]), 10, "mm"];
       case 'SNOW':
         // numData = prcpData; // placeholder
-        return [prcpData, d3.scaleLinear()
+        return [snowData, d3.scaleLinear()
           .domain([0, 10, 20, 30, 50])
           .range(["#F0E3FF", "#D5B7F7", "#916DD5", "#7346BB", "#592BA2"]), 10, "mm"];
       case 'MAXT':

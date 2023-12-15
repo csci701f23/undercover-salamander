@@ -125,16 +125,20 @@ def reduceCounty(countyGroup):
                 elif (param == "TMIN"):
                     dict[yearKey] = min(dict.get(yearKey, float('inf')), value["VALS"][i])
             except: 
-                print(f"int('ID') error at row: {value}, group:{countyGroup}")
+                print(f"int('ID') error at county: {value['COUNTY']}, id:{value['ID']}")
                 sys.stdout.flush()
                 break
     if (param in ["PRCP", "SNOW"]):
         for key_ in dict:
             dict[key_] = dict[key_][1]/dict[key_][0]
-    return json.dumps(dict)
+    try:
+        return json.dumps(dict)
+    except:
+        print(f"int64 error! {dict}, {countyGroup}")
+        return
 
 def processCountyChunk(chunk):
-    return chunk.groupby(["COUNTY", "STATE"]).apply(reduceCounty)
+    return chunk.groupby(["COUNTY", "STATE"]).apply(reduceCounty).dropna()
 
 def processStationChunk(chunk):
     result = pd.DataFrame(columns=["ID", "NAME", "COUNTY", "STATE", "LAT", "LONG", "YEARS", "VALS"])
