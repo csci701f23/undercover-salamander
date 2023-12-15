@@ -20,7 +20,7 @@ echo "Starting: "`date +"%D %T"`
 echo -e "\n# Run Results -------------------------"
 # in a new environment, use "conda create -n {name} python={version}" in this project, version=3.10
 # use "conda activate 701" in terminal before sbatch
-python3 ./src/python/test.py
+python3 ./src/python/NOAAToJSON_Serial.py
 
 echo "Ending: "`date +"%D %T"`
 

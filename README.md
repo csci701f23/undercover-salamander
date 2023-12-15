@@ -17,7 +17,7 @@ Go on localhost:3000 to see a running version of the server!
 
 **To compile data:**
 
-To process different station data, change the parameters on the last line in `data/NOAAToJSON.py`, where it calls "processAllStations(_)". The 4 parameters defined are:
+To process different station data, change the parameters on the last line in `data/NOAAToJSON.py`, where it calls "main(_)". The 4 parameters defined are:
 * PRCP - rainfall
 * SNOW - snowfall
 * TMAX - maximum temperature
