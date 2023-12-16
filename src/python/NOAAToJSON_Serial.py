@@ -76,6 +76,7 @@ def processStation(id, name, latitude, longitude):
             individualData = pd.read_fwf(f"https://www1.ncdc.noaa.gov/pub/data/ghcn/daily/all/{id}.dly", colspecs=colspecs, header=None, names=colnames)
             break
         except:
+            print("Sleeping...")
             time.sleep(1)
     
     if (not (individualData["ELEMENT"].eq(param)).any()):
