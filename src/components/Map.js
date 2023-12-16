@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree. */
 import * as d3 from 'd3';
 import prcpData from "../../data/PRCP_info.json"
 import maxtData from "../../data/TMAX_info.json"
+import snowData from "../../data/SNOW_info.json"
 import Scale from './Scale';
 
 export default function Map ({ year, width, height, geoData, currentTab }) {
@@ -14,35 +15,30 @@ export default function Map ({ year, width, height, geoData, currentTab }) {
   const getData = (tab) => {
     switch (currentTab) {
       case 'PRCP':
-        // numData = prcpData;
         return [prcpData, d3.scaleLinear()
-          .domain([0, 10, 20, 30, 50])
+          .domain([0, 1, 2, 3, 5])
           .range(["#E5fAC0", "#B4E197", "#83BD75", "#4E944F", "#2A6D2B"]), 10, "mm"];
       case 'SNOW':
-        // numData = prcpData; // placeholder
-        return [prcpData, d3.scaleLinear()
-          .domain([0, 10, 20, 30, 50])
+        return [snowData, d3.scaleLinear()
+          .domain([0, 0.1, 0.5, 0.75, 1])
           .range(["#F0E3FF", "#D5B7F7", "#916DD5", "#7346BB", "#592BA2"]), 10, "mm"];
       case 'MAXT':
-        // numData = maxtData;
         return [maxtData, d3.scaleLinear()
-          .domain([0, 10, 20, 30, 40])
+          .domain([27.5, 33.75, 37.5, 41.25, 45])
           .range(["#FFFFAD", "#FFCB58", "#F68F50", "#E0603F", "#BE3613"]), 10, "°C"];
       case 'MINT':
-        // numData = prcpData; // placeholder
         return [prcpData, d3.scaleLinear()
-          .domain([0, 10, 20, 30, 50])
+          .domain([0, 1, 2, 3, 5])
           .range(["#C2FCF8", "#88D8DA", "#41ADC5", "#1692B6", "#055D96"]), 10, "°C"];
       default:
-        // numData = prcpData;
         return [prcpData, d3.scaleLinear()
-          .domain([0, 10, 20, 30, 50])
+          .domain([0, 1, 2, 3, 5])
           .range(["#E5fAC0", "#B4E197", "#83BD75", "#4E944F", "#2A6D2B"]), 10, "mm"];
       };
   }
 
   const [numData, colorScale, dataScaleFactor, unit] = getData(currentTab);
-
+  
   const yearConst = `${year}`.split(" ")[3];
 
   console.log(currentTab);
@@ -51,7 +47,7 @@ export default function Map ({ year, width, height, geoData, currentTab }) {
   const projection = d3
     .geoAlbersUsa()
     .scale(scale)
-    .translate([width / 1.8, height / 3]); // Center the map on the SVG
+    .translate([width / 2, height / 2]); // Center the map on the SVG
 
     // TODO: fix runtime using geoPath(project, context) to save as a graphics context
   const geoPathGenerator = d3.geoPath().projection(projection);

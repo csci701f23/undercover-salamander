@@ -1,9 +1,3 @@
-# Copyright (c) 2023, <Jeff Blake, Lauren Clarke, Cece Ziegler >
-# All rights reserved.
-
-# This source code is licensed under the BSD-style license found in the
-# LICENSE file in the root directory of this source tree. 
-
 import pandas as pd
 import numpy as np
 import json
@@ -77,11 +71,13 @@ def filterAndReduce(group):
     return reduceByParam(group)
 
 def processStation(id, name, latitude, longitude):
-    # try:
-    individualData = pd.read_fwf(f"https://www1.ncdc.noaa.gov/pub/data/ghcn/daily/all/{id}.dly", colspecs=colspecs, header=None, names=colnames)
-    # except:
-    #     time.sleep(1)
-    #     return None
+    while (True):
+        try:
+            individualData = pd.read_fwf(f"https://www1.ncdc.noaa.gov/pub/data/ghcn/daily/all/{id}.dly", colspecs=colspecs, header=None, names=colnames)
+            break
+        except:
+            print("Sleeping...")
+            time.sleep(1)
     
     if (not (individualData["ELEMENT"].eq(param)).any()):
         return None
@@ -131,16 +127,20 @@ def reduceCounty(countyGroup):
                 elif (param == "TMIN"):
                     dict[yearKey] = min(dict.get(yearKey, float('inf')), value["VALS"][i])
             except: 
-                print(f"int('ID') error at row: {value}, group:{countyGroup}")
+                print(f"int('ID') error at county: {value['COUNTY']}, id:{value['ID']}")
                 sys.stdout.flush()
                 break
     if (param in ["PRCP", "SNOW"]):
         for key_ in dict:
             dict[key_] = dict[key_][1]/dict[key_][0]
-    return json.dumps(dict)
+    try:
+        return json.dumps(dict)
+    except:
+        print(f"int64 error! {dict}, {countyGroup}")
+        return
 
 def processCountyChunk(chunk):
-    return chunk.groupby(["COUNTY", "STATE"]).apply(reduceCounty)
+    return chunk.groupby(["COUNTY", "STATE"]).apply(reduceCounty).dropna()
 
 def processStationChunk(chunk):
     result = pd.DataFrame(columns=["ID", "NAME", "COUNTY", "STATE", "LAT", "LONG", "YEARS", "VALS"])
@@ -166,10 +166,10 @@ def processAllStations(param):
     countyData = processCountyChunk(stationResults)
 
     # NOTE: This path will need to be changed if you aren't running from sbatch ada-submit (the base undercover-salamander directory)
-    with open(f"./data/{param}_info_.json", "w+") as f:
+    with open(f"./data/{param}_info.json", "w+") as f:
         countyData.to_json(f, orient="table", indent=4)
 
 def main(param):
     processAllStations(param)
 
-main("TMIN")
+main("TMAX")

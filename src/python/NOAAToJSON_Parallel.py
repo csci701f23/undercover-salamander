@@ -143,6 +143,22 @@ def processStationQueue(TASK_NUMBER, workQueue, stationQueue, mutex):
             sys.stdout.flush()
     print(f"{TASK_NUMBER}: done!")
 
+def processStationQueue(TASK_NUMBER, workQueue, stationQueue, mutex):
+    while (not workQueue.empty()):
+        mutex.acquire()
+        if (not workQueue.empty()):
+            value = workQueue.get()
+        mutex.release()
+        if (value is not None):
+            row = processStation(value["ID"], value["Name"], value["Latitude"], value["Longitude"])
+            if (row is not None):
+                result = pd.DataFrame(columns=["ID", "NAME", "COUNTY", "STATE", "LAT", "LONG", "YEARS", "VALS"])
+                result.loc[len(result)] = row
+                stationQueue.put(result)
+            print(f"{TASK_NUMBER}: {value['ID']}, queue remaining: {workQueue.qsize()}, {None if row is None else 'Some'}")
+            sys.stdout.flush()
+    print(f"{TASK_NUMBER}: done!")
+
 
 def processCountyChunk(chunk):
     return chunk.groupby(["COUNTY", "STATE"]).apply(averageCounty)
@@ -154,7 +170,23 @@ def processAllStations(param):
 
     if __name__ == '__main__':    
         print(f"Creating data for parameter: {param}:\n")
+        print(f"Creating data for parameter: {param}:\n")
         print("Processing stations individually...")
+        workQueue = multiprocessing.Queue()
+        stationQueue = multiprocessing.Queue()
+        mutex = multiprocessing.Lock()
+
+        for key, value in stateStations.iterrows():
+            workQueue.put(value)
+
+        processes = []
+        for i in range(0, num_processes):
+            p = multiprocessing.Process(target=processStationQueue, args=(i, workQueue, stationQueue, mutex))
+            processes.append(p)
+            p.start()
+        
+        for process in processes:
+            process.join()
         workQueue = multiprocessing.Queue()
         stationQueue = multiprocessing.Queue()
         mutex = multiprocessing.Lock()
@@ -176,8 +208,15 @@ def processAllStations(param):
         for i in range(0, stationQueue.qsize()):
             stationFrame.add(stationQueue.get())
                 
+        stationFrame = pd.DataFrame(columns=["ID", "NAME", "COUNTY", "STATE", "LAT", "LONG", "YEARS", "VALS"])
+        # Add rows in queue to stationFrame
+        for i in range(0, stationQueue.qsize()):
+            stationFrame.add(stationQueue.get())
+                
         print("Processing counties...")
         # Redefining chunk size here in case some stations weren't processed
+        # adapted parallelization start from: https://stackoverflow.com/questions/40357434/pandas-df-iterrows-parallelization
+
         # adapted parallelization start from: https://stackoverflow.com/questions/40357434/pandas-df-iterrows-parallelization
 
         stationFrameLength = stationFrame.shape[0]
@@ -197,9 +236,15 @@ def processAllStations(param):
         countyData = pd.concat(county_results)
 
         # NOTE: This path will need to be changed if you aren't running from sbatch ada-submit (the base undercover-salamander directory)
+
+        # NOTE: This path will need to be changed if you aren't running from sbatch ada-submit (the base undercover-salamander directory)
         with open(f"./data/{param}_info_.json", "w+") as f:
             countyData.to_json(f, orient="table", indent=4)
     
+def main(param):
+    processAllStations(param)
+
+main("TMIN")
 def main(param):
     processAllStations(param)
 
