@@ -77,6 +77,7 @@ def processStation(id, name, latitude, longitude):
             break
         except:
             print("Sleeping...")
+            sys.stdout.flush()
             time.sleep(1)
     
     if (not (individualData["ELEMENT"].eq(param)).any()):
