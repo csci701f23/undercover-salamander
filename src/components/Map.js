@@ -28,7 +28,7 @@ export default function Map ({ year, width, height, geoData, currentTab }) {
           .range(["#FFFFAD", "#FFCB58", "#F68F50", "#E0603F", "#BE3613"]), 10, "°C"];
       case 'MINT':
         return [prcpData, d3.scaleLinear()
-          .domain([0, 10, 20, 30, 50])
+          .domain([0, 1, 2, 3, 5])
           .range(["#C2FCF8", "#88D8DA", "#41ADC5", "#1692B6", "#055D96"]), 10, "°C"];
       default:
         return [prcpData, d3.scaleLinear()
