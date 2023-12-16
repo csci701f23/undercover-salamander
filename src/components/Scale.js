@@ -16,7 +16,7 @@ const Scale = ({ currentTab }) => {
 
     if (currentTab === 'MINT') {
       newScaleGradient = 'linear-gradient(to bottom, #C2FCF8, #88D8DA, #41ADC5, #1692B6)';
-      newKeyValues = ['0', '1.66', '3.33', '5', 'Daily Avg (C)'];
+      newKeyValues = ['0', '-13.33', '-26.66', '-40', 'Daily Avg (C)'];
     } else if (currentTab === 'MAXT') {
       newScaleGradient = 'linear-gradient(to bottom, #FFFFAD, #FFCB58, #F68F50, #E0603F)';
       newKeyValues = ['27.5', '33.33', '39.166', '45', 'Daily Avg (C)'];

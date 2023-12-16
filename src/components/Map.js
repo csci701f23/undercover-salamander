@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree. */
 import * as d3 from 'd3';
 import prcpData from "../../data/PRCP_info.json"
 import maxtData from "../../data/TMAX_info.json"
+import mintData from "../../data/TMIN_info.json"
 import snowData from "../../data/SNOW_info.json"
 import Scale from './Scale';
 
@@ -27,8 +28,8 @@ export default function Map ({ year, width, height, geoData, currentTab }) {
           .domain([27.5, 33.75, 37.5, 41.25, 45])
           .range(["#FFFFAD", "#FFCB58", "#F68F50", "#E0603F", "#BE3613"]), 10, "°C"];
       case 'MINT':
-        return [prcpData, d3.scaleLinear()
-          .domain([0, 1, 2, 3, 5])
+        return [mintData, d3.scaleLinear()
+          .domain([0, -10, -20, -30, -40])
           .range(["#C2FCF8", "#88D8DA", "#41ADC5", "#1692B6", "#055D96"]), 10, "°C"];
       default:
         return [prcpData, d3.scaleLinear()
@@ -59,7 +60,7 @@ export default function Map ({ year, width, height, geoData, currentTab }) {
       const regionData = numData.data.find((region) => `${region.COUNTY},${region.STATE}` === countyId);
 
       const regionValue = regionData ? JSON.parse(regionData.values)[yearConst]/dataScaleFactor : null;
-      const formattedRegionValue = regionValue ? regionValue.toFixed(3) : null;
+      const formattedRegionValue = regionValue && (currentTab !== "MAXT" || (currentTab === "MAXT" && regionValue <= 55)) ? regionValue.toFixed(3) : null;
 
       // Extra check for if the given year doesn't exist
       const color = formattedRegionValue ? colorScale(formattedRegionValue) : "lightgrey";
