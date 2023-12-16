@@ -33,14 +33,14 @@ const Scale = ({ currentTab }) => {
   }, [currentTab]);
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-start', marginRight: '40px', marginTop: '80px' }}>
+    <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-start', marginRight: '10px', marginTop: '10px' }}>
     <h2 style={{ fontSize: '12px' }}>key</h2>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
         {keyValues.map((value, index) => (
-          <div key={index} style={{ fontSize: '10px', marginBottom: '65px' }}>{value}</div>
+          <div key={index} style={{ fontSize: '10px', marginBottom: '63px' , marginRight: '5px' }}>{value}</div>
         ))}
       </div>
-      <div style={{ marginLeft: '10px', background: scaleGradient, width: '30px', height: '250px', borderRadius: '20px' }} />
+      <div style={{ marginLeft: '0px', background: scaleGradient, width: '30px', height: '250px', borderRadius: '10px' }} />
     </div>
   );
 };
