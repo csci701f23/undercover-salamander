@@ -20,7 +20,7 @@ export default function Map ({ year, width, height, geoData, currentTab }) {
           .range(["#E5fAC0", "#B4E197", "#83BD75", "#4E944F", "#2A6D2B"]), 10, "mm"];
       case 'SNOW':
         return [snowData, d3.scaleLinear()
-          .domain([0, 0.25, 0.5, 0.75, 1])
+          .domain([0, 0.1, 0.5, 0.75, 1])
           .range(["#F0E3FF", "#D5B7F7", "#916DD5", "#7346BB", "#592BA2"]), 10, "mm"];
       case 'MAXT':
         return [maxtData, d3.scaleLinear()
