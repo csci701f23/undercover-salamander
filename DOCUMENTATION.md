@@ -107,10 +107,10 @@ the county has data for, along with the corresponding averaged values
 partial functions were more difficult to implement)
 
 # Census_FIPS_to_String Documentation
-A helper class that reformatted the existing county latitude and longitude information to include the state's name instead of its Census ID
+A helper class that reformatted the existing county latitude and longitude information to include the state's name instead of its Census ID.
 
 # NOAAToJSON_Parallel Documentation
-An experimental and currently non-optimal parallel approach to creating JSON data for the map. Props and functions are mainly similar to the serial approach, but new or different functions will be listed below
+An experimental and currently non-optimal parallel approach to creating JSON data for the map. Props and functions are mainly similar to the serial approach, but new or different functions will be listed below.
 
 ### Functions
 * processAllStations(param : String) : void: This function now prepares the data for parallelization by adding all of the rows with a US ID to a work queue. Then, an array of processes is formed to break up the work. These processes are called on processStationQueue (detailled below). Upon getting the result (a queue of individually processed stations), the queue is casted into a dataframe. This dataframe is then broken up into chunks, which are mapped along a pool of workers into the function processCountyChunk. The result is then concatenated and written into a JSON file.
