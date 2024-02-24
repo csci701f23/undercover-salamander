@@ -9,11 +9,11 @@ Visualizing how weather patterns have changed over time can be an essential tool
 
 **To compile and test:**
 
-On install: npm install (to install dependencies)
+On install: `npm install` (to install dependencies)
 
-To run on a local server: npm run dev
+To run on a local server: `npm run dev`
 
-Go on localhost:3000 to see a running version of the server!
+Go on `localhost:3000` to see a running version of the server!
 
 **To compile data:**
 
@@ -25,7 +25,7 @@ To process different station data, change the parameters on the last line in `da
 
 **To deploy:**
 
-To compile the static pages to be deployed: npm run build
+To compile the static pages to be deployed: `npm run build`
 
 The website will be deployed to github pages on any PR to main - HOWEVER, in order to make sure the checks do not fail the job, the following steps must be followed BEFORE attempting to deploy (before you can create a pull request to main):
 1. Go to Settings
@@ -33,6 +33,8 @@ The website will be deployed to github pages on any PR to main - HOWEVER, in ord
 3. Click on the "github-pages" environment
 4. Change the setting for "Deployment branches and tags" to "Selected branches and tags"
 5. For whichever branch you want to allow the site to deploy from, add the name of that branch as a rule
+
+To see the fully deployed website, visit https://csci701f23.github.io/undercover-salamander/.
 
 
 ### Examples and How to Use
